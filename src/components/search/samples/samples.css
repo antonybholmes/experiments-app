@@ -1,0 +1,25 @@
+.samples {
+  color: green;
+  border: solid 1px green;
+}
+
+.sample {
+  cursor: pointer;
+}
+
+.sample-info {
+  border: solid 1px orange;
+  flex: 4;
+}
+
+.sample-info-entry {
+  
+}
+
+.sample-info-entry-name {
+  color: orange;
+}
+
+.sample-info-entry-value {
+  flex: 3;
+}

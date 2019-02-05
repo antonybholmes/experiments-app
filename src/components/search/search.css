@@ -1,0 +1,20 @@
+.search-pane {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border: solid 1px red;
+  flex: 5;
+}
+
+.search-bar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.search-results {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
