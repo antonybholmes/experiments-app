@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import "./ribbon.css";
+import "../../app.css";
 
-class QuickAccessToolbar extends Component {
+
+class RibbonBar extends Component {
   render() {
     return (
-      <div className="quick-access-toolbar">
+      <div className="row ribbon-bar">
         {this.props.children}
       </div>
     );
   }
 }
 
-export default QuickAccessToolbar;
+export default RibbonBar;

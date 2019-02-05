@@ -4,7 +4,7 @@ import "./ribbon.css";
 class Ribbon extends Component {
   render() {
     return (
-      <div className={"ribbon"}>
+      <div className="column ribbon">
         {this.props.children}
       </div>
     );

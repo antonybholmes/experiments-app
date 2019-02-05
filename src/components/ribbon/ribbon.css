@@ -1,7 +1,5 @@
 .ribbon {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+    background-color: white;
 }
 
 .ribbon-content {
@@ -9,12 +7,17 @@
     height: 32px;
 }
 
-.ribbon-tabs {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
+.ribbon-bar {
     background-color: #007acc;
+    height: 32px;
+    border: solid 1px red;
+}
+
+.ribbon-tab {
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+    width: 100px;
+    height: 32px;
 }
 
 .ribbon-button {

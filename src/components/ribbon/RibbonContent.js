@@ -5,7 +5,7 @@ import "./ribbon.css";
 class RibbonContent extends Component {
   render() {
     return (
-      <div className={"ribbon-content"}>ribboncontent</div>
+      <div className="ribbon-content">ribbon acontent</div>
     );
   }
 }

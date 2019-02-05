@@ -4,7 +4,7 @@ import "./ribbon.css";
 class QuickAccessButton extends Component {
   render() {
     return (
-      <div className={"quick-access-button"}>
+      <div className="quick-access-button">
       </div>
     );
   }

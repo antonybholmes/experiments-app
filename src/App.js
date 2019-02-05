@@ -6,12 +6,14 @@ import RibbonButton from "./components/ribbon/RibbonButton"
 import SearchPane from "./components/search/SearchPane"
 import Groups from "./components/Groups"
 import Ribbon from "./components/ribbon/Ribbon"
-import RibbonTabs from "./components/ribbon/RibbonTabs"
+import RibbonBar from "./components/ribbon/RibbonTabs"
 import QuickAccessToolbar from "./components/ribbon/QuickAccessToolbar";
 import QuickAccessButton from "./components/ribbon/QuickAccessButton";
 import SideBar from "./components/Sidebar";
 import RibbonMenu from "./components/ribbon/ribbonmenu/RibbonMenu";
 import RibbonContent from "./components/ribbon/RibbonContent";
+import RibbonTabs from "./components/ribbon/RibbonTabs";
+import RibbonTab from "./components/ribbon/RibbonTab";
 
 class App extends Component {
   clicked() {
@@ -23,11 +25,14 @@ class App extends Component {
       <div className={"app"}>
         <RibbonMenu/>
         <Ribbon>
-          <RibbonTabs>
+          <RibbonBar>
             <QuickAccessToolbar>
               <QuickAccessButton></QuickAccessButton>
             </QuickAccessToolbar>
-          </RibbonTabs>
+            <RibbonTabs>
+              <RibbonTab name="Home"/>
+            </RibbonTabs>
+          </RibbonBar>
           <RibbonContent/>
         </Ribbon>
         <Content>
