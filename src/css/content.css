@@ -7,10 +7,3 @@
 
 }
 
-.sidebar {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    background-color: red;
-}

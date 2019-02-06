@@ -6,34 +6,44 @@ import RibbonButton from "./components/ribbon/RibbonButton"
 import SearchPane from "./components/search/SearchPane"
 import Groups from "./components/Groups"
 import Ribbon from "./components/ribbon/Ribbon"
-import RibbonBar from "./components/ribbon/RibbonTabs"
+import RibbonBar from "./components/ribbon/RibbonBar"
 import QuickAccessToolbar from "./components/ribbon/QuickAccessToolbar";
 import QuickAccessButton from "./components/ribbon/QuickAccessButton";
-import SideBar from "./components/Sidebar";
+import SideBar from "./components/sidebar/Sidebar";
 import RibbonMenu from "./components/ribbon/ribbonmenu/RibbonMenu";
-import RibbonContent from "./components/ribbon/RibbonContent";
+import RibbonContent from "./components/ribbon/ribboncontent/RibbonContent";
 import RibbonTabs from "./components/ribbon/RibbonTabs";
-import RibbonTab from "./components/ribbon/RibbonTab";
+import RibbonTab from "./components/ribbon/ribbontab/RibbonTab";
+import RibbonToolbar from "./components/ribbon/ribboncontent/ribbontoolbar/RibbonToolbar";
 
 class App extends Component {
-  clicked() {
-    console.log('test');
+  constructor(props) {
+    super(props);
+
+    this.state = { toolbar: "Home" };
+
+    this.changeTab = this.changeTab.bind(this);
+  }
+
+  changeTab(name) {
+    this.setState({ toolbar: name });
   }
 
   render() {
     return (
       <div className={"app"}>
-        <RibbonMenu/>
+        <RibbonMenu />
         <Ribbon>
-          <RibbonBar>
-            <QuickAccessToolbar>
-              <QuickAccessButton></QuickAccessButton>
-            </QuickAccessToolbar>
-            <RibbonTabs>
-              <RibbonTab name="Home"/>
-            </RibbonTabs>
-          </RibbonBar>
-          <RibbonContent/>
+          <RibbonBar onChangeTab={this.changeTab} />
+          <RibbonContent toolbar={this.state.toolbar}>
+            <RibbonToolbar name="Home">
+              <div>Test</div>
+              <div>Test2</div>
+            </RibbonToolbar>
+            <RibbonToolbar name="Other">
+              <div>Other</div>
+            </RibbonToolbar>
+          </RibbonContent>
         </Ribbon>
         <Content>
           <SideBar>

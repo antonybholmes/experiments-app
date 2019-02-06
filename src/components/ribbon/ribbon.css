@@ -1,24 +1,20 @@
 .ribbon {
-    background-color: white;
+    
 }
 
-.ribbon-content {
-    background-color: white;
-    height: 32px;
-}
+
 
 .ribbon-bar {
     background-color: #007acc;
     height: 32px;
-    border: solid 1px red;
+    
 }
 
-.ribbon-tab {
-    color: white;
-    background-color: rgba(0, 0, 0, 0);
-    width: 100px;
+.ribbon-tabs {
     height: 32px;
 }
+
+
 
 .ribbon-button {
     background-color: green;
@@ -28,9 +24,7 @@
 }
 
 .quick-access-toolbar {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    border:sold 1px red;
 }
 
 .quick-access-button {

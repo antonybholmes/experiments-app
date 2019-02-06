@@ -1,0 +1,25 @@
+.ribbon-tab {
+  width: 100px;
+  height: 32px;
+  transition: background-color 300ms ease-out, color 300ms ease-out;
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 32px;
+}
+
+
+
+.ribbon-tab-off {
+  color: white;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.ribbon-tab-off:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.ribbon-tab-on {
+  color: #007acc;
+  background-color: white;
+}

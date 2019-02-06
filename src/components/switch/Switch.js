@@ -41,7 +41,6 @@ class Switch extends Component {
   }
 
   render() {
-    console.log('r s ' + this.state.classNames);
     return (
       <div className={this.state.classNames} onClick={this.clicked}>
         <ToggleButton on={this.state.on} />
