@@ -6,6 +6,16 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 10pt;
+  font-weight: 400;
+}
+
+body {
+  background-color: orange;
+}
+
+html, body {
+  height: 100vh;
 }
 
 code {

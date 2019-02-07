@@ -1,11 +1,7 @@
+@import "../../../theme.scss";  
+
 .ribbon-tab {
-  width: 100px;
-  height: 32px;
   transition: background-color 300ms ease-out, color 300ms ease-out;
-  cursor: pointer;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 32px;
 }
 
 
@@ -20,6 +16,10 @@
 }
 
 .ribbon-tab-on {
-  color: #007acc;
-  background-color: white;
+  color: $RIBBON-COLOR;
+  background-color: $RIBBON-TAB-BACKGROUND;
+}
+
+.ribbon-tab-on:hover {
+  background-color: $RIBBON-TAB-BACKGROUND;
 }

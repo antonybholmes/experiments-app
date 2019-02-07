@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "../../../app.css";
-import "./samples.css";
+import "../../../app.scss";
+import "./samples.scss";
 import Tags from "../../../Tags"
 
 class SampleInfo extends Component {

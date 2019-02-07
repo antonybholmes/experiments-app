@@ -1,0 +1,29 @@
+@keyframes keyframes-ribbon-toolbar-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.ribbon-toolbar {
+  align-content: flex-start;
+  align-items: stretch;
+  opacity: 0; 
+}
+
+.ribbon-toolbar-fade-in {
+  animation-name: keyframes-ribbon-toolbar-fade;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+.ribbon-toolbar-section {
+  align-items: stretch;
+  flex: none;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  
+}

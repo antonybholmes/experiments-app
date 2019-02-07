@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import "../../app.css";
-import "./search.css";
+import "../../app.scss";
 import Samples from "./samples/Samples";
 import SampleInfo from "./samples/SampleInfo";
-import SearchBar from "./SearchBar";
 import axios from "axios";
 import Constants from "../../Constants"
 import Tags from "../../Tags"
@@ -18,40 +16,17 @@ class SearchPane extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { query: props.query, sample: null, samples: [{ id: -1, n: "No results" }], sampleInfo: {} };
+    this.state = { sample: props.sample, sampleInfo: {} };
 
-    this.sampleClicked = this.sampleClicked.bind(this);
-    this.search = this.search.bind(this);
+    this.clicked = this.clicked.bind(this);
   }
 
-  search(q) {
-    this.setState({query : q});
+  clicked(e, sample) {
+    console.log("1. Received click in  parent " + sample.id);
 
-    console.log("here" + q);
+    this.setState({ sample: sample });
 
-    let url = `${URL}${this.state.query}`;
-
-    console.log(url);
-
-    axios.get(url, { headers: { "Access-Control-Allow-Origin": "*" } })
-      .then(res => {
-        const samples = res.data;
-        this.setState({ samples: samples });
-
-        this.sampleClicked(samples[0]);
-      })
-  }
-
-  componentDidMount() {
-    this.search(this.state.query);
-  }
-
-  sampleClicked(s) {
-    console.log("1. Received click in  parent " + s.id);
-
-    this.setState({ sample: s });
-
-    let url = `${TAG_URL}${s.id}`;
+    let url = `${TAG_URL}${sample.id}`;
 
     console.log(url);
 
@@ -74,12 +49,15 @@ class SearchPane extends Component {
       })
   }
 
+  componentDidMount() {
+    //this.sampleClicked(this.props.sample);
+  }
+
   render() {
     return (
       <div className="column search-pane">
-        <SearchBar query={this.state.query} onSearch={this.search} />
         <div className="row search-results">
-          <Samples search={this.state.query} samples={this.state.samples} onSampleClick={this.sampleClicked} />
+          <Samples samples={this.props.samples} onClick={this.clicked} />
           <SampleInfo key="sample-info" sample={this.state.sample} sampleInfo={this.state.sampleInfo} />
         </div>
       </div>

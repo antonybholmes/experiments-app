@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import "./ribbon.css";
+import "./ribbon.scss";
 
 class Ribbon extends Component {
   render() {
     return (
-      <div className="column ribbon">
+      <div className="column no-flex ribbon">
         {this.props.children}
       </div>
     );

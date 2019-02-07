@@ -1,0 +1,42 @@
+@import "../../../theme.scss";
+
+.samples {
+  padding: 0;
+}
+
+.sample {
+  padding: 0.5rem;
+  cursor: pointer;
+  background-color: rgba(0,0,0,0);
+  border-bottom: solid 1px #ddd;
+  transition: background-color $TRANSITION-TIME ease-in-out;
+}
+
+.sample:hover {
+  background-color: #eee;
+}
+
+.sample-info {
+  margin: 1em;
+  flex: 2.5;
+}
+
+.sample-info-entry {
+  
+}
+
+.sample-info-entry-name {
+  color: orange;
+}
+
+.sample-info-entry-value {
+  flex: 3;
+}
+
+.sample-title {
+  font-weight: 700;
+}
+
+.sample-sub-title {
+  font-size: 0.8rem;
+}

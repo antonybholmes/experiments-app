@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import "./samples.css";
-import "../../../app.css";
+import { Scrollbars } from 'react-custom-scrollbars';
+
+import "./samples.scss";
+import "../../../app.scss";
 import Sample from "./Sample";
 import SampleInfo from "./SampleInfo";
 import axios from "axios";
@@ -15,21 +17,41 @@ class Samples extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { samples: [], sampleInfo: [] };
+    this.state = { samples: [], sampleInfo: [], selectedSamples: [] };
 
     this.clicked = this.clicked.bind(this);
   }
 
-  clicked(e) {
-    this.props.onSampleClick(e);
+  clicked(e, sample) {
+    if (e.ctrlKey) {
+      let samples = this.state.selectedSamples.concat(sample);
+      this.setState({selectedSamples : samples})
+    } else {
+      this.setState({selectedSamples : [sample]})
+    }
+
+    if (this.props.onClick !== undefined) {
+      this.props.onClick(e, sample);
+    }
+  }
+
+  mouseDown(e) {
+    if (e.ctrlKey) {
+      console.log('a');
+    }
+    console.log('mouse down');
+  }
+
+  componentDidMount() {
+    console.log('samples loaded');
   }
 
   render() {
     return (
       <div key="samples" className="column samples">
-        <ul>
-          {this.props.samples.map(sample => <Sample key={sample.id} onClick={this.clicked} sample={sample} />)}
-        </ul>
+      <Scrollbars>
+        {this.props.samples.map(sample => <Sample key={sample.id} onClick={this.clicked} sample={sample} />)}
+      </Scrollbars>
       </div>
     );
   }

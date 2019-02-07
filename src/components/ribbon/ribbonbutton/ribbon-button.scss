@@ -1,0 +1,9 @@
+@import "../../../theme.scss";
+
+.ribbon-button {
+  color: $RIBBON-COLOR;
+}
+
+.ribbon-button:hover {
+  background-color: #dddd;
+}

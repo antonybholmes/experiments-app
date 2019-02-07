@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import "./app.css";
-import Content from "./components/Content"
-import Button from "./components/Button"
-import RibbonButton from "./components/ribbon/RibbonButton"
+import "./app.scss";
+import Content from "./components/content/Content"
+import Button from "./components/button/Button"
+import RibbonButton from "./components/ribbon/ribbonbutton/RibbonButton"
 import SearchPane from "./components/search/SearchPane"
-import Groups from "./components/Groups"
+import Groups from "./components/groups/Groups"
 import Ribbon from "./components/ribbon/Ribbon"
 import RibbonBar from "./components/ribbon/RibbonBar"
 import QuickAccessToolbar from "./components/ribbon/QuickAccessToolbar";
@@ -14,42 +14,104 @@ import RibbonMenu from "./components/ribbon/ribbonmenu/RibbonMenu";
 import RibbonContent from "./components/ribbon/ribboncontent/RibbonContent";
 import RibbonTabs from "./components/ribbon/RibbonTabs";
 import RibbonTab from "./components/ribbon/ribbontab/RibbonTab";
-import RibbonToolbar from "./components/ribbon/ribboncontent/ribbontoolbar/RibbonToolbar";
+import RibbonToolbar from "./components/ribbon/ribbontoolbar/RibbonToolbar";
+import RibbonToolbarSection from "./components/ribbon/ribbontoolbar/RibbonToolbarSection";
+import SideTabs from "./components/sidetabs/SideTabs";
+import Card from "./components/card/Card";
+import SearchBar from "./components/searchbar/SearchBar";
+import FileTab from "./components/ribbon/filetab/FileTab";
+import Constants from "./Constants";
+import axios from "axios";
+
+const KEY = Constants.KEY;
+const URL = `http://52.206.83.98/edbw/api/v1/samples/search?&key=${KEY}&totp=031082&q=`;
+
+const TAG_URL = `http://52.206.83.98/edbw/api/v1/samples/tags?&key=${KEY}&totp=031082&sample=`;
+
 
 class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { toolbar: "Home" };
+    this.state = { toolbar: "Home", query: "BCL6", samples: [] };
 
+    this.fileClicked = this.fileClicked.bind(this);
     this.changeTab = this.changeTab.bind(this);
+    this.search = this.search.bind(this);
+  }
+
+  fileClicked(e) {
+    console.log('file clicked');
   }
 
   changeTab(name) {
     this.setState({ toolbar: name });
   }
 
+  search(q) {
+    this.setState({query : q});
+
+    console.log("searching" + q);
+
+    let url = `${URL}${q}`;
+
+    console.log(url);
+
+    axios.get(url, { headers: { "Access-Control-Allow-Origin": "*" } })
+      .then(res => {
+        const samples = res.data;
+        this.setState({ sample: samples.length > 0 ? samples[0] : null, samples: samples });
+      })
+  }
+
+  componentDidMount() {
+    this.search(this.state.query);
+  }
+
   render() {
     return (
-      <div className={"app"}>
+      <div className="column app">
         <RibbonMenu />
         <Ribbon>
-          <RibbonBar onChangeTab={this.changeTab} />
-          <RibbonContent toolbar={this.state.toolbar}>
-            <RibbonToolbar name="Home">
-              <div>Test</div>
-              <div>Test2</div>
+          <RibbonBar>
+            <QuickAccessToolbar>
+              <FileTab onClick={this.fileClicked} />
+            </QuickAccessToolbar>
+            
+
+            <RibbonTabs onChangeTab={this.changeTab} />
+            
+            <div className="row row-vert-center align-right">
+            <SearchBar query={this.state.query} onSearch={this.search} />
+            </div>
+            
+          </RibbonBar>
+          <RibbonContent tab={this.state.toolbar}>
+            <RibbonToolbar key="home" name="Home">
+              <RibbonToolbarSection name="Microarray">
+                <RibbonButton name="MAS5"/>
+              </RibbonToolbarSection>
+
+              <RibbonToolbarSection name="RNA-seq">
+                <RibbonButton name="RNA-seq"/>
+              </RibbonToolbarSection>
+
             </RibbonToolbar>
-            <RibbonToolbar name="Other">
+            <RibbonToolbar key="other" name="Other">
               <div>Other</div>
             </RibbonToolbar>
           </RibbonContent>
         </Ribbon>
         <Content>
           <SideBar>
-            <Groups onClick={this.clicked} />
+            <SideTabs>
+              <Groups name="Groups" onClick={this.clicked} />
+            </SideTabs>
+            
           </SideBar>
-          <SearchPane query="bcl6" />
+          <Card>
+            <SearchPane sample={this.state.sample} samples={this.state.samples} />
+          </Card>
         </Content>
       </div>
     );

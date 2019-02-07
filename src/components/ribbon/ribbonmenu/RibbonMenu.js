@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./ribbon-menu.css";
+import "./ribbon-menu.scss";
 
 class RibbonMenu extends Component {
   render() {

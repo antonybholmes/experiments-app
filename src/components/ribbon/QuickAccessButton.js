@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./ribbon.css";
+import "./ribbon.scss";
 
 class QuickAccessButton extends Component {
   render() {

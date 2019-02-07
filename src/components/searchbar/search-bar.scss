@@ -1,0 +1,57 @@
+@import "../../theme.scss";
+
+.search-block {
+  margin-left: 5rem;
+}
+
+.search-bar {
+  background-color: rgba(255,255,255, 0.4);
+  border: none;
+  flex: 0 0 auto;
+  height: 1.8rem;
+  padding-left: 0.9rem;
+  padding-right: 0.1rem;
+  border-radius: 1.8rem;
+  transition: background-color $TRANSITION-TIME ease-in-out;
+}
+
+.search-bar:hover {
+  background-color: rgba(255,255,255, 0.6);
+}
+
+.search-results {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.search-box {
+  color: $RIBBON-COLOR;
+  width: 20rem;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.search-box:hover, search-box:focus {
+  outline:none;
+}
+
+.search-button {
+  color: $RIBBON-COLOR;
+  background: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 24px;
+  cursor: pointer;
+}
+
+.search-button:hover, .search-button:focus {
+  outline:none;
+}
+
+
+

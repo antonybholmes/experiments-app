@@ -1,12 +1,6 @@
 import React, { Component } from "react";
-import "../../app.css";
-import "./search.css";
-import Samples from "./samples/Samples";
-import Constants from '../../Constants'
-
-const KEY = Constants.KEY;
-const URL = `http://52.206.83.98/edbw/api/v1/samples/search?&key=${KEY}&totp=031082&q=`;
-
+import "../../app.scss";
+import "./search-bar.scss";
 
 
 class SearchBar extends Component {
@@ -22,8 +16,6 @@ class SearchBar extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    console.log('du ' + this.state.query)
-
     this.props.onSearch(this.state.query);
   }
 
@@ -33,10 +25,10 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div className={"search-bar"}>
+      <div className="row row-center row-vert-center search-bar">
         <form onSubmit={this.handleSubmit}>
-          <input type="text" value={this.state.query} onChange={this.handleChange} />
-          <input type="submit" value="Submit" />
+          <input type="text" className="search-box" value={this.state.query} onChange={this.handleChange} />
+          <button type="submit" className="search-button fas fa-search" />
         </form>
       </div>
     );

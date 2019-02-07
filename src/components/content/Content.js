@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import "../css/content.css";
-import "../app.css";
+import "./content.scss";
+import "../../app.scss";
 
 class Content extends Component {
   render() {
     return (
-      <div className={"content"}>
+      <div className="row content">
         {this.props.children}
       </div>
     );

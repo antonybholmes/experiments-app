@@ -1,8 +1,8 @@
 .switch {
 	position: relative;
-	width: 3rem;
-	height: 2rem;
-  border-radius: 2rem;
+	width: 2.4rem;
+	height: 1.6rem;
+  border-radius: 1.6rem;
 	transition: background-color 400ms ease-out;
   z-index: 1;
   cursor: pointer;
@@ -10,8 +10,8 @@
 
 .toggle-button {
 	position: absolute;
-	width: 1.8rem;
-	height: 1.8rem;
+	width: 1.4rem;
+	height: 1.4rem;
 	background-color: white;
 	border-radius: 50%;
 	transition: transform 400ms ease-in-out;
@@ -21,11 +21,11 @@
 }
 
 .switch-off {
-	background-color: #ccc;
+	background-color: #ddd;
 }
 
 .switch-on {
-	background-color: blue;
+	background-color: green;
 }
 
 .toggle-left {
@@ -33,5 +33,5 @@
 }
 
 .toggle-right {
-  transform: translateX(1rem);
+  transform: translateX(0.8rem);
 }

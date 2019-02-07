@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./samples.css";
+import "./samples.scss";
 
 
 class Sample extends Component {
@@ -15,13 +15,27 @@ class Sample extends Component {
 
   clicked(e) {
     console.log(this.props.sample)
-    this.props.onClick(this.props.sample);
+    this.props.onClick(e, this.props.sample);
   }
 
   render() {
     return (
-      <li className="sample" onClick={this.clicked} >{this.props.sample.n}</li>
+      <div className="column sample" onClick={this.clicked} >
+        <div className="row sample-title">{this.props.sample.n}</div>
+        {this.renderType()}
+      </div>
     );
+  }
+
+  renderType() {
+    switch(this.props.sample.t) {
+      case 2:
+        return(<div className="row sample-sub-title">ChIP-seq</div>);
+      case 1:
+        return(<div className="row sample-sub-title">Microarray</div>);
+      default:
+        return(<div className="row sample-sub-title">Other</div>);
+    }
   }
 }
 

@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import "../../app.css";
-import "./ribbon.css";
+import "../../app.scss";
+import "./ribbon.scss";
 import QuickAccessButton from "./QuickAccessButton";
 
 class QuickAccessToolbar extends Component {
   render() {
     return (
-      <div className="row quick-access-toolbar">
-        <QuickAccessButton/>
+      <div className="row no-flex quick-access-toolbar">
+        {this.props.children}
       </div>
     );
   }

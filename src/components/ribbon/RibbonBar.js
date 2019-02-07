@@ -1,24 +1,18 @@
 import React, { Component } from "react";
-import "../../app.css";
-import "./ribbon.css";
+import "../../app.scss";
+import "./ribbon.scss";
 import QuickAccessToolbar from "./QuickAccessToolbar"
 import RibbonTabs from "./RibbonTabs"
 
 class RibbonBar extends Component {
   constructor(props) {
     super(props);
-
-    this.changeTab = this.changeTab.bind(this);
-  }
-
-  changeTab(name) {
-    this.props.onChangeTab(name);
   }
 
   render() {
     return (
-      <div className="row ribbon-bar">
-        <RibbonTabs onChangeTab={this.changeTab} />
+      <div className="row no-flex ribbon-bar">
+        {this.props.children}
       </div>
     );
   }

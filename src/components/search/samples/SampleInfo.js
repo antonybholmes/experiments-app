@@ -1,18 +1,22 @@
 import React, { Component } from "react";
 import SampleInfoMicroarray from "./SampleInfoMicroarray"
 
-import "./samples.css";
+import "./samples.scss";
 
 class SampleInfo extends Component {
 
 
   render() {
-    if (this.props.sample === null || this.props.sample === undefined) {
-      return(<div>No sample found</div>);
-    }
 
-    console.log(this.props.sample);
-    console.log('si ' + this.props.sampleInfo);
+    return (<div className="column sample-info">
+      {this.renderItems()}
+    </div>);
+  }
+
+  renderItems() {
+    if (this.props.sample === undefined) {
+      return (<div>Please select a sample.</div>);
+    }
 
     switch (this.props.sample.t) {
       case 1:
@@ -20,7 +24,7 @@ class SampleInfo extends Component {
         return (<SampleInfoMicroarray sampleInfo={this.props.sampleInfo} />);
         break;
       default:
-        return (<div>fail</div>);
+        return (<div>No view available.</div>);
         break;
     }
   }

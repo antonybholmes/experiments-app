@@ -1,0 +1,36 @@
+
+.row, .column {
+  display: flex;
+  flex-wrap: nowrap;
+  flex: 1;
+  overflow: hidden;
+}
+
+.no-flex {
+  flex: 0 0 auto;
+}
+
+.align-right {
+  justify-content: flex-end;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.row-vert-center {
+  align-items: center;
+}
+
+.row-center {
+  justify-content: center;
+}
+
+.app {
+  height: 100vh;
+  margin: 0;
+}
