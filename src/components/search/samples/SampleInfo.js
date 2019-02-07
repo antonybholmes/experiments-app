@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import SampleInfoMicroarray from "./SampleInfoMicroarray"
+import SampleInfoMicroarray from "./SampleInfoMicroarray";
+import Card from "../../card/Card";
 
 import "./samples.scss";
 
@@ -9,7 +10,11 @@ class SampleInfo extends Component {
   render() {
 
     return (<div className="column sample-info">
+      <h2>{this.props.sampleInfo["/Microarray/Sample/Sample/Sample_Name"]}</h2>
+
+      <Card>
       {this.renderItems()}
+      </Card>
     </div>);
   }
 

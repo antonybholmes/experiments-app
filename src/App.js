@@ -22,6 +22,7 @@ import SearchBar from "./components/searchbar/SearchBar";
 import FileTab from "./components/ribbon/filetab/FileTab";
 import Constants from "./Constants";
 import axios from "axios";
+import CenterPanel from "./components/centerpanel/CenterPanel";
 
 const KEY = Constants.KEY;
 const URL = `http://52.206.83.98/edbw/api/v1/samples/search?&key=${KEY}&totp=031082&q=`;
@@ -33,7 +34,7 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { toolbar: "Home", query: "BCL6", samples: [] };
+    this.state = { toolbar: "Home", query: "BCL6", samples: {} };
 
     this.fileClicked = this.fileClicked.bind(this);
     this.changeTab = this.changeTab.bind(this);
@@ -49,7 +50,7 @@ class App extends Component {
   }
 
   search(q) {
-    this.setState({query : q});
+    this.setState({ query: q });
 
     console.log("searching" + q);
 
@@ -60,8 +61,39 @@ class App extends Component {
     axios.get(url, { headers: { "Access-Control-Allow-Origin": "*" } })
       .then(res => {
         const samples = res.data;
-        this.setState({ sample: samples.length > 0 ? samples[0] : null, samples: samples });
+        this.sortSamples(samples);
       })
+  }
+
+  sortSamples(samples) {
+    var sampleMap = {};
+    
+    var t = "";
+
+    console.log(samples.length);
+
+    samples.forEach((sample, index) => {
+      switch (sample.t) {
+        case 1:
+          t = "Microarray";
+          break;
+        case 2:
+          t = "ChIP-seq";
+          break;
+        default:
+          t = "Other";
+      }
+
+      if (!(t in sampleMap)) {
+        sampleMap[t] = new Array();
+      }
+
+      sampleMap[t].push(sample);
+    });
+
+    console.log(sampleMap['Microarray'].length + " " + Object.keys(sampleMap));
+
+    this.setState({ sample: null, samples: sampleMap });
   }
 
   componentDidMount() {
@@ -77,23 +109,23 @@ class App extends Component {
             <QuickAccessToolbar>
               <FileTab onClick={this.fileClicked} />
             </QuickAccessToolbar>
-            
+
 
             <RibbonTabs onChangeTab={this.changeTab} />
-            
+
             <div className="row row-vert-center align-right">
-            <SearchBar query={this.state.query} onSearch={this.search} />
+              <SearchBar query={this.state.query} onSearch={this.search} />
             </div>
-            
+
           </RibbonBar>
           <RibbonContent tab={this.state.toolbar}>
             <RibbonToolbar key="home" name="Home">
               <RibbonToolbarSection name="Microarray">
-                <RibbonButton name="MAS5"/>
+                <RibbonButton name="MAS5" />
               </RibbonToolbarSection>
 
               <RibbonToolbarSection name="RNA-seq">
-                <RibbonButton name="RNA-seq"/>
+                <RibbonButton name="RNA-seq" />
               </RibbonToolbarSection>
 
             </RibbonToolbar>
@@ -107,11 +139,13 @@ class App extends Component {
             <SideTabs>
               <Groups name="Groups" onClick={this.clicked} />
             </SideTabs>
-            
+
           </SideBar>
-          <Card>
+          <CenterPanel>
+            {/* <Card> */}
             <SearchPane sample={this.state.sample} samples={this.state.samples} />
-          </Card>
+            {/* </Card> */}
+          </CenterPanel>
         </Content>
       </div>
     );

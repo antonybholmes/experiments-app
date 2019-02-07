@@ -1,5 +1,7 @@
+@import "../../theme.scss";
+
 .card {
-    background-color: white;
-    flex: 5;
+    padding: 1em;
+    border: solid 1px $LINE_COLOR;
 }
 

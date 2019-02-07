@@ -2,6 +2,7 @@
 
 .samples {
   padding: 0;
+  background-color: white;
 }
 
 .sample {
@@ -12,13 +13,26 @@
   transition: background-color $TRANSITION-TIME ease-in-out;
 }
 
-.sample:hover {
+.sample-selected {
+  background-color: #ddd;
+}
+
+.sample-not-selected:hover {
   background-color: #eee;
 }
 
 .sample-info {
   margin: 1em;
   flex: 2.5;
+}
+
+.sample-block-title {
+  background-color: #eee;
+  padding-left: 0.5em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  font-weight: 700;
+  font-size: 1.2em;
 }
 
 .sample-info-entry {

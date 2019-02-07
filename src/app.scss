@@ -1,4 +1,7 @@
 
+@import "./theme.scss";
+
+
 .row, .column {
   display: flex;
   flex-wrap: nowrap;
@@ -28,6 +31,14 @@
 
 .row-center {
   justify-content: center;
+}
+
+.col-sep {
+  border-right: solid 1px $LINE-COLOR;
+}
+
+.base-card {
+  background: white;
 }
 
 .app {

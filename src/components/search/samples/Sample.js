@@ -14,13 +14,19 @@ class Sample extends Component {
   }
 
   clicked(e) {
-    console.log(this.props.sample)
-    this.props.onClick(e, this.props.sample);
+    console.log("log " + this.props.sample + " " + this.props.index);
+
+    this.props.onClick(e, this.props.sample, this.props.index);
   }
 
   render() {
+    let selected = this.props.index in this.props.sampleIndexMap && this.props.sampleIndexMap[this.props.index];
+    let classNames = ["column", "sample", selected ? "sample-selected" : "sample-not-selected"].join(" ");
+    
+    console.log('beep ' + this.props.index + " " + (this.props.index in this.props.sampleIndexMap));
+
     return (
-      <div className="column sample" onClick={this.clicked} >
+      <div className={classNames} onClick={this.clicked} >
         <div className="row sample-title">{this.props.sample.n}</div>
         {this.renderType()}
       </div>

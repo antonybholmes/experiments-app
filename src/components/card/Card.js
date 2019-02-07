@@ -5,7 +5,7 @@ import "./card.scss";
 class Card extends Component {
   render() {
     return (
-      <div className="column card">
+      <div className="column base-card card">
         {this.props.children}
       </div>
     );
