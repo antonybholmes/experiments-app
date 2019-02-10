@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../../app.scss";
 import Samples from "./samples/Samples";
 import SampleInfo from "./samples/SampleInfo";
+import SampleFilter from "./samples/filter/SampleFilter";
 import axios from "axios";
 import Constants from "../../Constants"
 import Tags from "../../Tags"
@@ -55,11 +56,10 @@ class SearchPane extends Component {
 
   render() {
     return (
-      <div className="column search-pane">
-        <div className="row search-results">
-          <Samples samples={this.props.samples} onClick={this.clicked} />
-          <SampleInfo key="sample-info" sample={this.state.sample} sampleInfo={this.state.sampleInfo} />
-        </div>
+      <div className="row search-pane">
+        <Samples samples={this.props.samples} onClick={this.clicked} />
+       
+        <SampleInfo key="sample-info" sample={this.state.sample} sampleInfo={this.state.sampleInfo} />
       </div>
     );
   }

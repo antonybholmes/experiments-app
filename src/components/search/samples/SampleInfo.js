@@ -9,7 +9,7 @@ class SampleInfo extends Component {
 
   render() {
 
-    return (<div className="column sample-info">
+    return (<div className="col sample-info">
       <h2>{this.props.sampleInfo["/Microarray/Sample/Sample/Sample_Name"]}</h2>
 
       <Card>

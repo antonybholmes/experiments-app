@@ -25,7 +25,7 @@ import axios from "axios";
 import CenterPanel from "./components/centerpanel/CenterPanel";
 
 const KEY = Constants.KEY;
-const URL = `http://52.206.83.98/edbw/api/v1/samples/search?&key=${KEY}&totp=031082&q=`;
+const URL = `http://52.206.83.98/edbw/api/v1/samples/search?&key=${KEY}&totp=031082`;
 
 const TAG_URL = `http://52.206.83.98/edbw/api/v1/samples/tags?&key=${KEY}&totp=031082&sample=`;
 
@@ -34,15 +34,22 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { toolbar: "Home", query: "BCL6", samples: {} };
+    this.state = { toolbar: "Home", query: "BCL6", samples: {}, showMenu : false, groupby : "sample-person", sortAsc: true };
 
     this.fileClicked = this.fileClicked.bind(this);
+    this.menuClose = this.menuClose.bind(this);
     this.changeTab = this.changeTab.bind(this);
     this.search = this.search.bind(this);
+
   }
 
   fileClicked(e) {
+    this.setState({showMenu : true});
     console.log('file clicked');
+  }
+
+  menuClose(e) {
+    this.setState({showMenu : false});
   }
 
   changeTab(name) {
@@ -54,44 +61,39 @@ class App extends Component {
 
     console.log("searching" + q);
 
-    let url = `${URL}${q}`;
+    let url = `${URL}&q=${q}&groupby=${this.state.groupby}`;
 
     console.log(url);
 
     axios.get(url, { headers: { "Access-Control-Allow-Origin": "*" } })
       .then(res => {
-        const samples = res.data;
-        this.sortSamples(samples);
+        const data = res.data.data;
+        this.sortSamples(data);
       })
   }
 
-  sortSamples(samples) {
+  sortSamples(data) {
     var sampleMap = {};
     
     var t = "";
 
-    console.log(samples.length);
+    console.log(data.length);
 
-    samples.forEach((sample, index) => {
-      switch (sample.t) {
-        case 1:
-          t = "Microarray";
-          break;
-        case 2:
-          t = "ChIP-seq";
-          break;
-        default:
-          t = "Other";
-      }
+    let keys = Object.keys(data).sort()
 
-      if (!(t in sampleMap)) {
-        sampleMap[t] = new Array();
-      }
+    //if (!this.state.sortAsc) {
+      keys = keys.reverse()
+    //}
 
-      sampleMap[t].push(sample);
+    keys.forEach((group, gi) => {
+      sampleMap[group] = new Array();
+
+      console.log(group);
+
+      data[group].forEach((sample, si) => {
+        sampleMap[group].push(sample);
+      });
     });
-
-    console.log(sampleMap['Microarray'].length + " " + Object.keys(sampleMap));
 
     this.setState({ sample: null, samples: sampleMap });
   }
@@ -103,7 +105,7 @@ class App extends Component {
   render() {
     return (
       <div className="column app">
-        <RibbonMenu />
+        <RibbonMenu show={this.state.showMenu} onClose={this.menuClose} />
         <Ribbon>
           <RibbonBar>
             <QuickAccessToolbar>

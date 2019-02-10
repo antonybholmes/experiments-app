@@ -17,7 +17,7 @@ class SampleBlock extends Component {
 
   render() {
     return (
-      <div className="sample-block">
+      <div className="col sample-block">
         <div className="row sample-block-title">{this.props.name}</div>
 
         {this.props.samples.map((sample, index) => <Sample key={sample.id} onClick={this.clicked} index={this.props.start + index} sample={sample} sampleIndexMap={this.props.sampleIndexMap} />)}

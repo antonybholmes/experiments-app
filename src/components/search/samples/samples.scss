@@ -23,16 +23,21 @@
 
 .sample-info {
   margin: 1em;
-  flex: 2.5;
+  flex: 2;
+}
+
+.sample-block {
+
 }
 
 .sample-block-title {
   background-color: #eee;
   padding-left: 0.5em;
-  padding-top: 1em;
-  padding-bottom: 1em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
   font-weight: 700;
-  font-size: 1.2em;
+  border-top: solid 1px $LINE-COLOR;
+  border-bottom: solid 1px $LINE-COLOR;
 }
 
 .sample-info-entry {
@@ -44,7 +49,7 @@
 }
 
 .sample-info-entry-value {
-  flex: 3;
+  
 }
 
 .sample-title {
