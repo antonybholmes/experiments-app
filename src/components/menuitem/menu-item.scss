@@ -1,0 +1,9 @@
+@import "../../theme.scss";
+
+.menu-item {
+  background-color: white;
+}
+
+.menu-item:hover {
+  background-color: $MENU-ITEM-BACKGROUND;
+}

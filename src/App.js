@@ -34,34 +34,61 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { toolbar: "Home", query: "BCL6", samples: {}, showMenu : false, groupby : "sample-person", sortAsc: true };
+    this.state = { toolbar: "Home", query: "BCL6", samples: {}, showMenu: false, sortby: "microarray-labeled-extract-array-platform", sortAsc: true };
 
     this.fileClicked = this.fileClicked.bind(this);
     this.menuClose = this.menuClose.bind(this);
     this.changeTab = this.changeTab.bind(this);
+    this.searched = this.searched.bind(this);
     this.search = this.search.bind(this);
-
+    this.sortChanged = this.sortChanged.bind(this);
   }
 
   fileClicked(e) {
-    this.setState({showMenu : true});
+    this.setState({ showMenu: true });
     console.log('file clicked');
   }
 
   menuClose(e) {
-    this.setState({showMenu : false});
+    this.setState({ showMenu: false });
   }
 
   changeTab(name) {
     this.setState({ toolbar: name });
   }
 
-  search(q) {
+  sortChanged(name) {
+    console.log('sort ' + name);
+
+    this.setState({ sortby: name }, () => {
+      this.search();
+    }); 
+  }
+
+  /**
+   * Handler for triggering a search when the query changes.
+   * 
+   * @param q   The search query.
+   */
+  searched(q) {
     this.setState({ query: q });
+
+    this.search();
+  }
+
+  /**
+   * Searches for samples matching the current query
+   */
+  search() {
+    let q = this.state.query;
 
     console.log("searching" + q);
 
-    let url = `${URL}&q=${q}&groupby=${this.state.groupby}`;
+    let url = `${URL}&q=${q}`;
+
+    if (this.state.sortby !== "sample") {
+      url = `${url}&sortby=${this.state.sortby}`;
+    }
 
     console.log(url);
 
@@ -74,7 +101,7 @@ class App extends Component {
 
   sortSamples(data) {
     var sampleMap = {};
-    
+
     var t = "";
 
     console.log(data.length);
@@ -82,11 +109,11 @@ class App extends Component {
     let keys = Object.keys(data).sort()
 
     //if (!this.state.sortAsc) {
-      keys = keys.reverse()
+    keys = keys.reverse()
     //}
 
     keys.forEach((group, gi) => {
-      sampleMap[group] = new Array();
+      sampleMap[group] = [];
 
       console.log(group);
 
@@ -116,7 +143,7 @@ class App extends Component {
             <RibbonTabs onChangeTab={this.changeTab} />
 
             <div className="row row-vert-center align-right">
-              <SearchBar query={this.state.query} onSearch={this.search} />
+              <SearchBar query={this.state.query} onSearch={this.searched} />
             </div>
 
           </RibbonBar>
@@ -145,7 +172,12 @@ class App extends Component {
           </SideBar>
           <CenterPanel>
             {/* <Card> */}
-            <SearchPane sample={this.state.sample} samples={this.state.samples} />
+            <SearchPane
+              sortby={this.state.sortby}
+              sample={this.state.sample}
+              samples={this.state.samples}
+              onSortChanged={this.sortChanged}
+              />
             {/* </Card> */}
           </CenterPanel>
         </Content>

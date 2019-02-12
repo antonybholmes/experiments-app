@@ -23,8 +23,6 @@ class Sample extends Component {
     let selected = this.props.index in this.props.sampleIndexMap && this.props.sampleIndexMap[this.props.index];
     let classNames = ["column", "sample", selected ? "sample-selected" : "sample-not-selected"].join(" ");
     
-    console.log('beep ' + this.props.index + " " + (this.props.index in this.props.sampleIndexMap));
-
     return (
       <div className={classNames} onClick={this.clicked} >
         <div className="row sample-title">{this.props.sample.n}</div>

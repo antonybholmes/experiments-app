@@ -5,7 +5,7 @@ import "./center-panel.scss";
 class CenterPanel extends Component {
   render() {
     return (
-      <div className="col center-panel">
+      <div className="column center-panel">
         {this.props.children}
       </div>
     );

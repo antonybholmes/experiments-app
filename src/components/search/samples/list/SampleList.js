@@ -53,7 +53,7 @@ class SampleList extends Component {
   render() {
     //console.log(this.props.samples['Microarray'].length + ' ff' );
     return (
-      <div key="sample-list" className="col sample-list">
+      <div key="sample-list" className="column sample-list">
         <Scrollbars>
           {this.renderItems()}
         </Scrollbars>

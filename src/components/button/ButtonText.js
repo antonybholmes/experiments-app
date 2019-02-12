@@ -5,7 +5,7 @@ import "./button.scss";
 class ButtonText extends Component {
   render() {
     return (
-      <div className="button-text">{this.props.text}</div>
+      <div className="row row-vert-center button-text">{this.props.children}</div>
     );
   }
 }

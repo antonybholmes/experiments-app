@@ -22,7 +22,7 @@ class RibbonTab extends Component {
 
     return (
       <div className={classNames} onClick={this.clicked}>
-        <ButtonText text={this.props.name} />
+        {this.props.name}
       </div>
     );
   }

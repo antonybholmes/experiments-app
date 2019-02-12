@@ -9,7 +9,7 @@ class RibbonButton extends Component {
   render() {
     return (
       <div className="row row-center row-vert-center button ribbon-button">
-        <ButtonText text={this.props.name} />
+        {this.props.name}
       </div>
     );
   }

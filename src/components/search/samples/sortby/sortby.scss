@@ -1,12 +1,12 @@
 @import "../../../../theme.scss";
 
 /* The container <div> - needed to position the dropdown content */
-.filter-drop-down {
+.sortby-drop-down {
   display: block;
 }
 
 /* Dropdown Button */
-.filter-drop-down-button {
+.sortby-drop-down-button {
   background-color: white;
   padding: 1rem;
   border: none;
@@ -14,12 +14,12 @@
   cursor: pointer;
 }
 
-.filter-icon {
+.sortby-icon {
   margin-left: 0.5rem;
   transition: color $TRANSITION-TIME ease-in-out;
 }
 
-.filter-icon:hover, .filter-icon:focus {
+.sortby-icon:hover, .sortby-icon:focus {
   color: #2980B9;
 }
 
@@ -35,8 +35,8 @@
   display:block;
   position: absolute;
   background-color: white;
-  min-width: 160px;
-  box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.2);
+  min-width: 15rem;
+  box-shadow: 0px 0px 1rem 0px rgba(0,0,0,0.2);
   z-index: 100;
   transition: opacity $TRANSITION-TIME ease-in-out;
 }
@@ -49,7 +49,7 @@
   display: block;
 }
 
-@keyframes filter-fade-in {
+@keyframes sortby-fade-in {
   from { 
     opacity: 0; 
   }
@@ -58,7 +58,7 @@
   }
 }
 
-@keyframes filter-fade-out {
+@keyframes sortby-fade-out {
   from { 
     opacity: 1;
   }
@@ -84,3 +84,4 @@
 .dropdown-content-show {
   opacity: 1;
 }
+
