@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Scrollbars } from 'react-custom-scrollbars';
-
+import { Scrollbars } from "react-custom-scrollbars";
+import { CSSTransitionGroup } from "react-transition-group";
 import "./sample-list.scss";
 import "../../../../app.scss";
 import SampleBlock from "../SampleBlock";
@@ -11,7 +11,12 @@ class SampleList extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { samples: {}, selected: -1, sampleInfo: [], selectedSamples: [], sampleIndexMap: { 0: true } };
+    this.state = { samples: {}, 
+      selected: -1, 
+      sampleInfo: [], 
+      selectedSamples: [], 
+      sampleIndexMap: { 0: true },
+      classNames : "column sample-list"};
 
     this.clicked = this.clicked.bind(this);
   }
@@ -46,19 +51,30 @@ class SampleList extends Component {
     }
   }
 
+  shouldComponentUpdate() {
+    console.log("going to update");
+
+    return true;
+  }
+
   componentDidMount() {
-    console.log('samples loaded');
+    console.log("samples loaded");
+
+    this.setState({classNames : "column sample-list sample-list-show"})
   }
 
   render() {
-    //console.log(this.props.samples['Microarray'].length + ' ff' );
+    //console.log(this.props.samples["Microarray"].length + " ff" );
     return (
-      <div key="sample-list" className="column sample-list">
-        <Scrollbars>
-          {this.renderItems()}
-        </Scrollbars>
-      </div>
 
+        <div key="sample-list" className={this.state.classNames}>
+
+
+          <Scrollbars>
+            {this.renderItems()}
+          </Scrollbars>
+
+        </div>
     );
   }
 
@@ -69,7 +85,7 @@ class SampleList extends Component {
 
     Object.keys(this.props.samples).map((t, ti) => {
       items.push(<SampleBlock key={t} name={t} start={start} samples={this.props.samples[t]} sampleIndexMap={this.state.sampleIndexMap} onClick={this.clicked} />)
-      
+
       start += this.props.samples[t].length;
     });
 

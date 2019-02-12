@@ -10,36 +10,40 @@ import SortByMenu from "./SortByMenu";
 class SortBy extends Component {
   constructor(props) {
     super(props);
-    this.state = {dropDownClassNames : "dropdown-content dropdown-content-hidden"};
+    this.state = { sortby: this.props.sortby, dropDownClassNames: "dropdown-content dropdown-content-hidden" };
     this.clicked = this.clicked.bind(this);
     this.outsideClicked = this.outsideClicked.bind(this);
     this.menuClicked = this.menuClicked.bind(this);
   }
 
   clicked(e) {
-    this.setState({dropDownClassNames : "dropdown-content dropdown-content-show"});
+    this.setState({ dropDownClassNames: "dropdown-content dropdown-content-show" });
   }
 
   menuClicked(e, name, altName) {
-    this.outsideClicked(e);
+    console.log('sortby ' + altName);
+
+    this.setState({ sortby: altName });
 
     this.props.onSortChanged(altName);
+
+    this.setState({ dropDownClassNames: "dropdown-content dropdown-content-hide" });
   }
 
   componentDidMount() {
-      document.addEventListener('click', this.outsideClicked, true);
+    document.addEventListener('click', this.outsideClicked, true);
   }
 
   componentWillUnmount() {
-      document.removeEventListener('click', this.outsideClicked, true);
+    document.removeEventListener('click', this.outsideClicked, true);
   }
 
   outsideClicked(e) {
-      const domNode = ReactDOM.findDOMNode(this);
+    const domNode = ReactDOM.findDOMNode(this);
 
-      if (!domNode || !domNode.contains(e.target)) {
-        this.setState({dropDownClassNames : "dropdown-content dropdown-content-hide"});
-      }
+    if (!domNode || !domNode.contains(e.target)) {
+      this.setState({ dropDownClassNames: "dropdown-content dropdown-content-hide" });
+    }
   }
 
   render() {
@@ -50,7 +54,7 @@ class SortBy extends Component {
         <div onClick={this.clicked} className="sortby-drop-down-button">Sort by
           <div className="sortby-icon fas fa-xs fa-chevron-down" />
         </div>
-        <SortByMenu sortby={this.props.sortby} onClick={this.menuClicked} dropDownClassNames={this.state.dropDownClassNames} />
+        <SortByMenu sortby={this.state.sortby} onClick={this.menuClicked} dropDownClassNames={this.state.dropDownClassNames} />
       </div>
     );
   }

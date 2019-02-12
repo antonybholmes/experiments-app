@@ -1,4 +1,22 @@
+@import "../../../../theme.scss";
+
 .sample-list {
+  opacity: 0;
   padding: 0;
   background-color: white;
+  
+}
+
+.sample-list-show {
+  transition: opacity 5000ms ease-in-out;
+  opacity: 1;
+}
+
+.sample-list-fade-enter {
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+}
+
+.sample-list-fade-enter.sample-list-fade-enter-active {
+  opacity: 1;
 }

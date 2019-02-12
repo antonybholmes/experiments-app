@@ -62,7 +62,7 @@ class App extends Component {
 
     this.setState({ sortby: name }, () => {
       this.search();
-    }); 
+    });
   }
 
   /**
@@ -90,35 +90,59 @@ class App extends Component {
       url = `${url}&sortby=${this.state.sortby}`;
     }
 
-    console.log(url);
+    console.log('blob ' + url);
 
     axios.get(url, { headers: { "Access-Control-Allow-Origin": "*" } })
       .then(res => {
-        const data = res.data.data;
-        this.sortSamples(data);
+        let data = res.data;
+
+        if ("data" in data) {
+          data = data.data;
+          this.sortBySamples(data);
+        } else {
+          // Sort samples
+          this.sortSamples(data);
+
+        }
       })
   }
 
-  sortSamples(data) {
+  sortSamples(samples) {
     var sampleMap = {};
 
-    var t = "";
+    sampleMap["Sample"] = [];
 
-    console.log(data.length);
+    samples.forEach((sample, gi) => {
+      sampleMap["Sample"].push(sample);
+    });
 
-    let keys = Object.keys(data).sort()
+    this.setState({ sample: null, samples: sampleMap });
+  }
+
+  sortBySamples(data) {
+    var sampleMap = {};
+
+    let keys = Object.keys(data); //.sort()
 
     //if (!this.state.sortAsc) {
-    keys = keys.reverse()
+    //  keys = keys.reverse()
     //}
 
-    keys.forEach((group, gi) => {
-      sampleMap[group] = [];
+    let keyMap = {};
 
-      console.log(group);
+    keys.forEach((key, gi) => {
+      let name = key.split(" ").reverse().join(", ");
 
-      data[group].forEach((sample, si) => {
-        sampleMap[group].push(sample);
+      keyMap[name] = key;
+    });
+
+    Object.keys(keyMap).sort().forEach((name, gi) => {
+      sampleMap[name] = [];
+
+      console.log(name);
+
+      data[keyMap[name]].forEach((sample, si) => {
+        sampleMap[name].push(sample);
       });
     });
 
@@ -177,7 +201,7 @@ class App extends Component {
               sample={this.state.sample}
               samples={this.state.samples}
               onSortChanged={this.sortChanged}
-              />
+            />
             {/* </Card> */}
           </CenterPanel>
         </Content>

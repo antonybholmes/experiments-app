@@ -28,8 +28,6 @@ class SearchPane extends Component {
   }
 
   clicked(e, sample) {
-    console.log("1. Received click in  parent " + sample.id);
-
     this.setState({ sample: sample });
 
     let url = `${TAG_URL}${sample.id}`;

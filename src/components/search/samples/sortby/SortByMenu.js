@@ -22,12 +22,12 @@ class SortByMenu extends Component {
     this.clicked = this.clicked.bind(this);
   }
 
-  clicked(e) {
-    this.setState({sortby : e.target.name})
+  clicked(e, name) {
+    this.setState({sortby : SEARCH_TAGS[name]})
 
-    console.log('sort ' + e.target.name);
+    console.log('sort ' + SEARCH_TAGS[name]);
 
-    this.props.onClick(e, e.target.name, SEARCH_TAGS[e.target.name]);
+    this.props.onClick(e, name, SEARCH_TAGS[name]);
   }
 
   render() {
