@@ -45,6 +45,8 @@ class App extends Component {
       toolbar: "Home",
       query: "BCL6",
       samples: {},
+      sampleList: [],
+      selectedSamples: [],
       showMenu: false,
       sortby: "microarray-labeled-extract-array-platform",
       showCart : false,
@@ -60,10 +62,15 @@ class App extends Component {
     this.sortChanged = this.sortChanged.bind(this);
     this.showCartClicked = this.showCartClicked.bind(this);
     this.cartClosed = this.cartClosed.bind(this);
+    this.selectionChanged = this.selectionChanged.bind(this);
   }
 
   clicked(e) {
     console.log('file clicked');
+  }
+
+  selectionChanged(e, samples) {
+    this.setState({selectedSamples : samples});
   }
 
   showCartClicked(e) {
@@ -149,7 +156,7 @@ class App extends Component {
       sampleMap["Sample"].push(sample);
     });
 
-    this.setState({ sample: null, samples: sampleMap });
+    this.setState({ sample: null, samples: sampleMap, sampleList : sampleMap["Sample"] });
   }
 
   sortBySamples(data) {
@@ -169,6 +176,8 @@ class App extends Component {
       keyMap[name] = key;
     });
 
+    let samples = []
+
     Object.keys(keyMap).sort().forEach((name, gi) => {
       sampleMap[name] = [];
 
@@ -176,10 +185,11 @@ class App extends Component {
 
       data[keyMap[name]].forEach((sample, si) => {
         sampleMap[name].push(sample);
+        samples.push(sample);
       });
     });
 
-    this.setState({ sample: null, samples: sampleMap });
+    this.setState({ sample: null, samples: sampleMap, sampleList : samples });
   }
 
   componentDidMount() {
@@ -231,7 +241,11 @@ class App extends Component {
           </RibbonContent>
         </Ribbon>
         <Content>
-          <CartPanel show={this.state.showCart} onClose={this.cartClosed}></CartPanel>
+          <CartPanel 
+            show={this.state.showCart} 
+            onClose={this.cartClosed}
+            selectedSamples={this.state.selectedSamples}
+            sampleList={this.state.sampleList}/>
           <SideBar>
             <SideTabs>
               <Groups name="Groups" onClick={this.clicked} />
@@ -245,6 +259,7 @@ class App extends Component {
               sample={this.state.sample}
               samples={this.state.samples}
               onSortChanged={this.sortChanged}
+              onSelectionChanged={this.selectionChanged}
             />
             {/* </Card> */}
           </CenterPanel>

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import "./cart.scss";
 import PrimaryButton from "../button/PrimaryButton";
+import CartEntry from "./CartEntry";
+import Icon from "../Icon";
 
 class CartPanel extends Component {
   constructor(props) {
@@ -27,10 +29,26 @@ class CartPanel extends Component {
 
     return (
       <div className={classNames} onClick={this.clicked}>
-        <div className="row no-flex row-vert-center justify-space-between"><h3>Sample Cart</h3><PrimaryButton onClick={this.closeClicked}>Close</PrimaryButton></div>
+        <div className="row no-flex row-vert-center justify-space-between">
+        <h3>Samples</h3>
+        <PrimaryButton onClick={this.closeClicked}>Hide</PrimaryButton>
+        
+        </div>
+
+        <div className="column">{this.renderItems()}</div>
 
       </div>
     );
+  }
+
+  renderItems() {
+    let ret = [];
+
+    this.props.selectedSamples.forEach((index, i) => {
+      ret.push(<CartEntry name={this.props.sampleList[index].n}/>)
+    });
+
+    return ret;
   }
 }
 

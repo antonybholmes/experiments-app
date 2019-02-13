@@ -21,6 +21,7 @@ class SearchPane extends Component {
 
     this.clicked = this.clicked.bind(this);
     this.sortChanged = this.sortChanged.bind(this);
+    this.selectionChanged = this.selectionChanged.bind(this);
   }
 
   sortChanged(name) {
@@ -53,6 +54,12 @@ class SearchPane extends Component {
       })
   }
 
+  selectionChanged(e, samples) {
+    if (this.props.onSelectionChanged !== undefined) {
+      this.props.onSelectionChanged(e, samples);
+    }
+  }
+
   componentDidMount() {
     //this.sampleClicked(this.props.sample);
   }
@@ -60,7 +67,11 @@ class SearchPane extends Component {
   render() {
     return (
       <div className="row search-pane">
-        <Samples sortby={this.props.sortby} samples={this.props.samples} onClick={this.clicked} onSortChanged={this.sortChanged} />
+        <Samples sortby={this.props.sortby} 
+          samples={this.props.samples} 
+          onClick={this.clicked} 
+          onSortChanged={this.sortChanged} 
+          onSelectionChanged={this.selectionChanged} />
        
         <SampleInfo key="sample-info" sample={this.state.sample} sampleInfo={this.state.sampleInfo} />
       </div>

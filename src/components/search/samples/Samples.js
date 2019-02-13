@@ -23,6 +23,7 @@ class Samples extends Component {
 
     this.clicked = this.clicked.bind(this);
     this.sortChanged = this.sortChanged.bind(this);
+    this.selectionChanged = this.selectionChanged.bind(this);
   }
 
   sortChanged(name) {
@@ -35,6 +36,12 @@ class Samples extends Component {
     }
   }
 
+  selectionChanged(e, samples) {
+    if (this.props.onSelectionChanged !== undefined) {
+      this.props.onSelectionChanged(e, samples);
+    }
+  }
+
   render() {
     //console.log(this.props.samples['Microarray'].length + ' ff' );
     return (
@@ -43,7 +50,7 @@ class Samples extends Component {
           <SortBy sortby={this.props.sortby} onSortChanged={this.sortChanged} />
         </div>
 
-        <SampleList key="sample-list" samples={this.props.samples} onClick={this.clicked} />
+        <SampleList key="sample-list" samples={this.props.samples} onClick={this.clicked} onSelectionChanged={this.selectionChanged} />
       </div>
     );
   }

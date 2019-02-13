@@ -32,3 +32,18 @@
 .cart-hide {
   animation: cart-slide-out $TRANSITION-TIME forwards;
 }
+
+.cart-entry {
+  padding-bottom: 0.5rem;
+}
+
+.cart-entry-remove-button {
+  height: 1.5rem;
+  width: 1.5rem;
+  padding: 0;
+  border-radius: 1em;
+}
+
+.cart-entry-remove-button:hover {
+  background-color: $RIBBON-BUTTON-BACKGROUND;
+}

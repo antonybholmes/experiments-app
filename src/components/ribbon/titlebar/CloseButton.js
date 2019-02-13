@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import ButtonText from "../../button/ButtonText"
 
 import "./titlebar.scss";
+import TitleButton from "./TitleButton";
+import Icon from "../../Icon";
 
 const CloseButton = (props) => {
     return (
-      <div onClick={props.onClick} className="row no-flex row-center row-vert-center button base-title-button close-button">
-        <div className="icon title-icon fas fa-times"/>
-      </div>
+      <TitleButton type="base-title-button close-button" onClick={props.onClick} >
+      <Icon name="fa-times"/>
+      </TitleButton>
     );
 };
 

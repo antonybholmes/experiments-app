@@ -33,19 +33,26 @@ class SampleList extends Component {
       let s = Math.min(selected, index);
       let e = Math.max(selected, index);
 
+      console.log('shift ' + s + '  '+ e);
+
       for (let i = s; i <= e; ++i) {
         samples.push(i);
-        indexes[i] = !(i in this.state.sampleIndexMap);
+        indexes[i] = true; //!(i in this.state.sampleIndexMap);
       }
     } else {
       indexes = {};
+      samples = [index];
       indexes[index] = true;
     }
 
-    this.setState({ sampleIndexMap: indexes, selectedSamples: [index], selected: index })
+    this.setState({ sampleIndexMap: indexes, selectedSamples: samples, selected: index })
 
     if (this.props.onClick !== undefined) {
       this.props.onClick(e, sample, index);
+    }
+
+    if (this.props.onSelectionChanged !== undefined) {
+      this.props.onSelectionChanged(e, samples);
     }
   }
 
@@ -66,8 +73,6 @@ class SampleList extends Component {
     return (
 
         <div className={this.state.classNames}>
-
-
           <Scrollbars>
             {this.renderItems()}
           </Scrollbars>
@@ -82,7 +87,13 @@ class SampleList extends Component {
     var items = []
 
     Object.keys(this.props.samples).map((t, ti) => {
-      items.push(<SampleBlock key={t} name={t} start={start} samples={this.props.samples[t]} sampleIndexMap={this.state.sampleIndexMap} onClick={this.clicked} />)
+      items.push(<SampleBlock 
+        key={t} 
+        name={t} 
+        start={start} 
+        samples={this.props.samples[t]} 
+        sampleIndexMap={this.state.sampleIndexMap} 
+        onClick={this.clicked} />)
 
       start += this.props.samples[t].length;
     });

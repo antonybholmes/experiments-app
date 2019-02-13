@@ -1,12 +1,12 @@
 import React from "react";
-
+import TitleButton from "./TitleButton";
 import "./titlebar.scss";
 
 const MaxButton = (props) => {
   return (
-      <div onClick={props.onClick} className="row no-flex row-center row-vert-center button base-title-button title-button">
+    <TitleButton type="title-button" onClick={props.onClick} >
         <div className="icon title-icon fas fa-window-maximize"/>
-      </div>
+    </TitleButton>
     );
 };
 
