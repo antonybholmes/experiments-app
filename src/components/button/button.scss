@@ -1,0 +1,40 @@
+@import "../../theme.scss";
+
+.button {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  height: 2rem;
+  border-radius: $BORDER-RADIUS;
+
+  transition: background-color $TRANSITION-TIME ease-in-out;
+  text-align: center;
+  cursor: pointer;
+}
+
+.button-text {
+    
+}
+
+.icon {
+  height: 1rem;
+  width: 1rem;
+  line-height: 1rem;
+  vertical-align: middle;
+}
+
+.button-icon {
+  margin-right: 0.5rem;
+}
+
+.menu-item-icon {
+  margin-right: 0.5rem;
+}
+
+.primary-button {
+  color: white;
+  background-color: #5599ff;
+}
+
+.primary-button:hover {
+  background-color: #2a7fff;
+}

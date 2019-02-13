@@ -44,7 +44,7 @@ class SortByMenu extends Component {
     console.log('s ' + this.state.sortby);
 
     MENU_ITEMS.forEach( (item) => {
-      let iconClassNames = "column no-flex row-center row-vert-center button-icon";
+      let iconClassNames = "column no-flex row-center row-vert-center icon menu-item-icon";
 
       if (SEARCH_TAGS[item] === this.state.sortby) {
         iconClassNames += " fas fa-check";

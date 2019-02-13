@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-import "../../app.scss";
-import "../../styles/button.scss";
 import "./menu-item.scss";
 
 

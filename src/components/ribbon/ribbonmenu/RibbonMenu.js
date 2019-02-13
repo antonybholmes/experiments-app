@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../../../app.scss";
+
 import "./ribbon-menu.scss";
 
 class RibbonMenu extends Component {

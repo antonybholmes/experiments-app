@@ -1,18 +1,13 @@
 import React, { Component } from "react";
-import ButtonText from "../../button/ButtonText"
 
-import "../../../app.scss";
-import "../../../styles/button.scss";
+
 import "./ribbon-button.scss";
+import Button from "../../button/Button";
 
-class RibbonButton extends Component {
-  render() {
-    return (
-      <div className="row row-center row-vert-center button ribbon-button">
-        {this.props.name}
-      </div>
-    );
-  }
-}
+const RibbonButton = (props) => {
+  return (
+    <Button type="ribbon-button">{props.children}</Button>
+  );
+};
 
 export default RibbonButton;

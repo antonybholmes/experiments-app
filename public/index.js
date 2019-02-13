@@ -13,7 +13,13 @@ let mainWindow;
 
 function createWindow() {
     // Create the browser window.
-    mainWindow = new BrowserWindow({title: "Experiments", width: 800, height: 600, webPreferences: {nodeIntegration: true, webSecurity: false}});
+    mainWindow = new BrowserWindow({
+        title: "Experiments",
+        // frame: false,
+        width: 800,
+        height: 600,
+        webPreferences: { nodeIntegration: true, webSecurity: false }
+    });
 
     //win.loadFile('index.html')
     // and load the index.html of the app.

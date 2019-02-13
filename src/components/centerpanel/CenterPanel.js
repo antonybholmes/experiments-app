@@ -1,5 +1,5 @@
 import React from "react";
-import "../../app.scss";
+
 import "./center-panel.scss";
 
 const CenterPanel = (props) => {

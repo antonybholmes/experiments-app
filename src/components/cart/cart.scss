@@ -1,0 +1,34 @@
+@import "../../theme.scss";
+
+.cart {
+  position: absolute;
+  opacity: 0;
+  top: 0; 
+  right: 0;
+  height: 100%;
+  width: 300px;
+  background-color: white;
+  box-shadow: $BOX-SHADOW-MENU;
+  z-index: 10;
+  padding: 1rem;
+}
+
+@keyframes cart-slide-in {
+  to { 
+    opacity: 1; 
+  }
+}
+
+@keyframes cart-slide-out {
+  to { 
+    opacity: 0;
+  }
+}
+
+.cart-show {
+  animation: cart-slide-in $TRANSITION-TIME forwards;
+}
+
+.cart-hide {
+  animation: cart-slide-out $TRANSITION-TIME forwards;
+}

@@ -1,10 +1,5 @@
 import React, { Component } from "react";
 
-import "../../app.scss";
-import "./side-tabs.scss";
-import "../../styles/button.scss";
-import "../ribbon/ribbonbutton/ribbon-button.scss";
-
 
 class SideTabsButton extends Component {
   constructor(props) {

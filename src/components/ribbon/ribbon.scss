@@ -1,27 +1,17 @@
 @import "../../theme.scss";
 
 .ribbon {
+    background-color: $RIBBON-COLOR;
     border-bottom: solid 1px $LINE-COLOR;
 }
 
 .ribbon-bar {
     
-    background-color: $RIBBON-COLOR;
 }
+
 
 .ribbon-tabs {
+    height: $RIBBON-TAB-HEIGHT;
     margin-top: 0.5rem;
 }
 
-.quick-access-toolbar {
-    margin-top: 0.5rem;
-}
-
-.quick-access-button {
-    background-color: #ffffff00;
-    transition: background-color 0.3s ease-in-out;
-}
-
-.quick-access-button:hover {
-    background-color: rgba(255, 255, 255, 0.5);
-}

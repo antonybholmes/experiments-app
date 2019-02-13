@@ -36,8 +36,8 @@
   position: absolute;
   background-color: white;
   border-radius: $BORDER-RADIUS;
-  min-width: 15rem;
-  box-shadow: 0px 0px 1rem 0px rgba(0,0,0,0.2);
+  min-width: 14rem;
+  box-shadow: $BOX-SHADOW-MENU;
   z-index: 100;
   transition: opacity $TRANSITION-TIME ease-in-out;
 }

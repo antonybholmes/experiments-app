@@ -3,6 +3,7 @@
 .samples {
   padding: 0;
   background-color: white;
+  border-bottom: solid 1px $LINE-COLOR;
 }
 
 .sample {
@@ -58,44 +59,4 @@
 
 .sample-sub-title {
   font-size: 0.8rem;
-}
-
-
-.samplelist-enter {
-  color:red;
-  opacity: 0;
-  
-}
-
-.samplelist-enter.samplelist-enter-active {
-  opacity: 1;
-  color:red;
-  transition: opacity 5000ms ease-in-out;
-}
-
-.samplelist-leave {
-  opacity: 1;
-}
-
-.samplelist-leave.samplelist-leave-active {
-  opacity: 0;
-  transition: opacity 5000ms ease-in;
-}
-
-
-.fadeIn {
-  opacity: 0;
-  animation-name: fadeIn;
-  animation-fill-mode: forwards;
-  animation-duration: 4s;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
 }

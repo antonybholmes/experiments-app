@@ -7,11 +7,11 @@
 .search-bar {
   background-color: rgba(255,255,255, 0.4);
   border: none;
-  flex: 0 0 auto;
   height: 1.8rem;
   padding-left: 0.9rem;
   padding-right: 0.1rem;
   border-radius: 1.8rem;
+  margin-right: 1rem;
   transition: background-color $TRANSITION-TIME ease-in-out;
 }
 
@@ -19,15 +19,9 @@
   background-color: rgba(255,255,255, 0.6);
 }
 
-.search-results {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
 .search-box {
   color: $RIBBON-COLOR;
-  width: 20rem;
+  width: 16rem;
   border: none;
   outline: none;
   background: none;

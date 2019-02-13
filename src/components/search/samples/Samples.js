@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { CSSTransitionGroup } from "react-transition-group";
 
 
 import "./samples.scss";
@@ -7,7 +6,7 @@ import Sample from "./Sample";
 import SampleInfo from "./SampleInfo";
 import axios from "axios";
 
-import Constants from '../../../Constants'
+import Constants from "../../../Constants"
 import SampleBlock from "./SampleBlock";
 import SampleFilter from "./filter/SampleFilter";
 import SampleList from "./list/SampleList";
@@ -39,15 +38,12 @@ class Samples extends Component {
   render() {
     //console.log(this.props.samples['Microarray'].length + ' ff' );
     return (
-      <div className="column samples">
-        <div className="row no-flex align-right">
+      <div className="column col-sep samples">
+        <div className="row no-flex justify-end">
           <SortBy sortby={this.props.sortby} onSortChanged={this.sortChanged} />
-          <SampleFilter />
         </div>
 
-        <div className="fadeIn">
-          <SampleList key="sample-list" samples={this.props.samples} onClick={this.clicked} />
-        </div>
+        <SampleList key="sample-list" samples={this.props.samples} onClick={this.clicked} />
       </div>
     );
   }

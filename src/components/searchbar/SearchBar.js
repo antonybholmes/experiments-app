@@ -25,7 +25,7 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div className="row row-center row-vert-center search-bar">
+      <div className="row no-flex row-center row-vert-center search-bar">
         <form onSubmit={this.handleSubmit}>
           <input type="text" className="search-box" value={this.state.query} onChange={this.handleChange} />
           <button type="submit" className="search-button fas fa-search" />
