@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../../app.scss";
+
 import Samples from "./samples/Samples";
 import SampleInfo from "./samples/SampleInfo";
 import SampleFilter from "./samples/filter/SampleFilter";

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ButtonText from "../../button/ButtonText"
 
 import "../../../app.scss";
+import "../../../styles/button.scss";
 import "./ribbon-tab.scss";
 
 

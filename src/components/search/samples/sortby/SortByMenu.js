@@ -44,10 +44,10 @@ class SortByMenu extends Component {
     console.log('s ' + this.state.sortby);
 
     MENU_ITEMS.forEach( (item) => {
-      let iconClassNames = "button-icon sortby-dropdown-menu-icon";
+      let iconClassNames = "column no-flex row-center row-vert-center button-icon";
 
       if (SEARCH_TAGS[item] === this.state.sortby) {
-        iconClassNames += " fas fa-check"
+        iconClassNames += " fas fa-check";
       }
 
       items.push(<MenuItem name={item} onClick={this.clicked}>

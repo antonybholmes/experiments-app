@@ -8,7 +8,7 @@ import TabView from "../../TabView";
 class RibbonContent extends TabView {
   render() {
     return (
-      <div className="row row-vert-center ribbon-content">
+      <div className="row no-flex row-vert-center ribbon-content">
         {this.state.tabs[this.props.tab]}
       </div>
     );

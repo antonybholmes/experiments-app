@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import { CSSTransitionGroup } from "react-transition-group";
+
 
 import "./samples.scss";
-import "../../../app.scss";
 import Sample from "./Sample";
 import SampleInfo from "./SampleInfo";
 import axios from "axios";
@@ -11,6 +12,7 @@ import SampleBlock from "./SampleBlock";
 import SampleFilter from "./filter/SampleFilter";
 import SampleList from "./list/SampleList";
 import SortBy from "./sortby/SortBy";
+
 
 const KEY = Constants.KEY;
 const URL = `http://52.206.83.98/edbw/api/v1/samples/tags?&key=${KEY}&totp=031082&sample=`;
@@ -42,7 +44,10 @@ class Samples extends Component {
           <SortBy sortby={this.props.sortby} onSortChanged={this.sortChanged} />
           <SampleFilter />
         </div>
-        <SampleList samples={this.props.samples} onClick={this.clicked} />
+
+        <div className="fadeIn">
+          <SampleList key="sample-list" samples={this.props.samples} onClick={this.clicked} />
+        </div>
       </div>
     );
   }

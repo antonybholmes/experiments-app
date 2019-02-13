@@ -1,7 +1,13 @@
+@import "../../theme.scss";
+
 .side-tabs {
-  justify-content: space-evenly;
+  justify-content: flex-end;
 }
 
 .side-tabs-button {
   cursor: pointer;
+}
+
+.side-tabs-button:hover {
+  background-color: $RIBBON-BUTTON-BACKGROUND;
 }

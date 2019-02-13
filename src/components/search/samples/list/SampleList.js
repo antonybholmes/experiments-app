@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Scrollbars } from "react-custom-scrollbars";
-import { CSSTransitionGroup } from "react-transition-group";
 import "./sample-list.scss";
-import "../../../../app.scss";
 import SampleBlock from "../SampleBlock";
 
 
@@ -67,7 +65,7 @@ class SampleList extends Component {
     //console.log(this.props.samples["Microarray"].length + " ff" );
     return (
 
-        <div key="sample-list" className={this.state.classNames}>
+        <div className={this.state.classNames}>
 
 
           <Scrollbars>

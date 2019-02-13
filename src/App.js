@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./app.scss";
 import Content from "./components/content/Content"
-import Button from "./components/button/Button"
 import RibbonButton from "./components/ribbon/ribbonbutton/RibbonButton"
 import SearchPane from "./components/search/SearchPane"
 import Groups from "./components/groups/Groups"

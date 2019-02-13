@@ -20,8 +20,6 @@ class RibbonMenu extends Component {
       classNames += " ribbon-menu-show";
     }
 
-    console.log('  asdasd ' + classNames)
-
     return (
       <div className={classNames} onClick={this.clicked}>
         <div className="column">dsdfdsf</div>

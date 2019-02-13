@@ -8,7 +8,7 @@ import TabView from "../TabView";
 class SideTabsView extends TabView {
   render() {
     return (
-      <div className="side-tabs-view">
+      <div className="row side-tabs-view">
         {this.state.tabs[this.props.tab]}
       </div>
     );

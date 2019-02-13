@@ -1,15 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import "../../app.scss";
 import "./center-panel.scss";
 
-class CenterPanel extends Component {
-  render() {
-    return (
-      <div className="column center-panel">
-        {this.props.children}
-      </div>
-    );
-  }
+const CenterPanel = (props) => {
+  return (
+    <div className="column center-panel">
+      {props.children}
+    </div>
+  );
 }
 
 export default CenterPanel;

@@ -10,14 +10,14 @@ import SortByMenu from "./SortByMenu";
 class SortBy extends Component {
   constructor(props) {
     super(props);
-    this.state = { sortby: this.props.sortby, dropDownClassNames: "dropdown-content dropdown-content-hidden" };
+    this.state = { sortby: this.props.sortby, dropDownClassNames: "column dropdown-content dropdown-content-hidden" };
     this.clicked = this.clicked.bind(this);
     this.outsideClicked = this.outsideClicked.bind(this);
     this.menuClicked = this.menuClicked.bind(this);
   }
 
   clicked(e) {
-    this.setState({ dropDownClassNames: "dropdown-content dropdown-content-show" });
+    this.setState({ dropDownClassNames: "column drop-down-menu dropdown-content dropdown-content-show" });
   }
 
   menuClicked(e, name, altName) {
@@ -27,7 +27,7 @@ class SortBy extends Component {
 
     this.props.onSortChanged(altName);
 
-    this.setState({ dropDownClassNames: "dropdown-content dropdown-content-hide" });
+    this.setState({ dropDownClassNames: "column drop-down-menu dropdown-content dropdown-content-hide" });
   }
 
   componentDidMount() {
@@ -42,7 +42,7 @@ class SortBy extends Component {
     const domNode = ReactDOM.findDOMNode(this);
 
     if (!domNode || !domNode.contains(e.target)) {
-      this.setState({ dropDownClassNames: "dropdown-content dropdown-content-hide" });
+      this.setState({ dropDownClassNames: "column drop-down-menu dropdown-content dropdown-content-hide" });
     }
   }
 

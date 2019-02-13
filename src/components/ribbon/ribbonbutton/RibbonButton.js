@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ButtonText from "../../button/ButtonText"
 
 import "../../../app.scss";
-import "../../button/button.scss";
+import "../../../styles/button.scss";
 import "./ribbon-button.scss";
 
 class RibbonButton extends Component {

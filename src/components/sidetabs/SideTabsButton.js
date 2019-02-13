@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import "../../app.scss";
 import "./side-tabs.scss";
+import "../../styles/button.scss";
+import "../ribbon/ribbonbutton/ribbon-button.scss";
 
 
 class SideTabsButton extends Component {
@@ -18,7 +20,7 @@ class SideTabsButton extends Component {
 
   render() {
     return (
-      <div className="side-tabs-button" onClick={this.clicked}>
+      <div className="row row-vert-center no-flex button side-tabs-button" onClick={this.clicked}>
         {this.props.name}
       </div>
     );

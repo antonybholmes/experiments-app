@@ -1,12 +1,11 @@
-import React from "react";
-import Button from "../button/Button";
+import React, { Component } from "react";
 
 import "../../app.scss";
-import "../button/button.scss";
+import "../../styles/button.scss";
 import "./menu-item.scss";
 
 
-class MenuItem extends Button {
+class MenuItem extends Component {
   constructor(props) {
     super(props);
 

@@ -1,8 +1,8 @@
 .switch {
 	position: relative;
 	width: 2.4rem;
-	height: 1.6rem;
-  border-radius: 1.6rem;
+	height: 1.4rem;
+  border-radius: 1.4rem;
 	transition: background-color 400ms ease-out;
   z-index: 1;
   cursor: pointer;
@@ -10,8 +10,8 @@
 
 .toggle-button {
 	position: absolute;
-	width: 1.4rem;
-	height: 1.4rem;
+	width: 1.2rem;
+	height: 1.2rem;
 	background-color: white;
 	border-radius: 50%;
 	transition: transform 400ms ease-in-out;

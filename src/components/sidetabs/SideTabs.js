@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import "./side-tabs.scss";
 import SideTabsView from "./SideTabsView";
 import SideTabsButton from "./SideTabsButton";
@@ -28,7 +29,9 @@ class SideTabs extends Component {
         <SideTabsView tab={this.state.tab}>
           {this.props.children}
         </SideTabsView>
+        <div className="column no-flex">
         {this.renderItems()}
+        </div>
       </div>
     );
   }

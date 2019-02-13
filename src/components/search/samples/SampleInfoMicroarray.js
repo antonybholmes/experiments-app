@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import SampleInfoEntry from "./SampleInfoEntry"
 
-import "../../../app.scss";
 import "./samples.scss";
 
 class SampleInfoMicroarray extends Component {

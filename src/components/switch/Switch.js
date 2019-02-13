@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import "./switch.scss";
 
 class ToggleButton extends Component {

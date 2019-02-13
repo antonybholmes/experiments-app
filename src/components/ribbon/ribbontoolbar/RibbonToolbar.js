@@ -1,16 +1,14 @@
-import React, { Component } from "react";
+import React from "react";
 import "../../../app.scss";
 import "./ribbon-toolbar.scss";
 
 
-class RibbonToolbar extends Component {
-  render() {
-    return (
-      <div className="row row-vert-center ribbon-toolbar ribbon-toolbar-fade-in">
-        {this.props.children}
-      </div>
-    );
-  }
+const RibbonToolbar = (props) => {
+  return (
+    <div className="row row-vert-center ribbon-toolbar ribbon-toolbar-fade-in">
+      {props.children}
+    </div>
+  );
 }
 
 export default RibbonToolbar;
