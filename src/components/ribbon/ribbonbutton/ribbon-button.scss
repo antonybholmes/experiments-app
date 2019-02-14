@@ -1,6 +1,7 @@
 @import "../../../theme.scss";
 
 .ribbon-button {
+  border-radius: 0;
   height: 2.4rem;
   color: $RIBBON-COLOR;
 }

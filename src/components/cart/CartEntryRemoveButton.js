@@ -6,7 +6,7 @@ import Icon from "../Icon";
 
 const CartEntryRemoveButton = (props) => {
   return (
-      <Button type="cart-entry-remove-button">
+      <Button type="cart-entry-remove-button" onClick={props.onClick}>
         <Icon name="fa-times"/>
       </Button>
     );

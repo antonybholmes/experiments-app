@@ -2,10 +2,11 @@ import React from "react";
 
 import "./button.scss";
 import Button from "./Button";
+import SemanticButton from "./SemanticButton";
 
 const PrimaryButton = (props) => {
   return (
-    <Button onClick={props.onClick} type="primary-button">{props.children}</Button>
+    <SemanticButton onClick={props.onClick} type="primary-button">{props.children}</SemanticButton>
   );
 };
 

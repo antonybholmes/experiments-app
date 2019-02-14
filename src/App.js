@@ -47,6 +47,7 @@ class App extends Component {
       samples: {},
       sampleList: [],
       selectedSamples: [],
+      cartSamples: [],
       showMenu: false,
       sortby: "microarray-labeled-extract-array-platform",
       showCart : false,
@@ -63,6 +64,7 @@ class App extends Component {
     this.showCartClicked = this.showCartClicked.bind(this);
     this.cartClosed = this.cartClosed.bind(this);
     this.selectionChanged = this.selectionChanged.bind(this);
+    this.cartChanged = this.cartChanged.bind(this);
   }
 
   clicked(e) {
@@ -71,6 +73,10 @@ class App extends Component {
 
   selectionChanged(e, samples) {
     this.setState({selectedSamples : samples});
+  }
+
+  cartChanged(samples) {
+    this.setState({cartSamples : samples});
   }
 
   showCartClicked(e) {
@@ -120,6 +126,8 @@ class App extends Component {
    * Searches for samples matching the current query
    */
   search() {
+    this.setState({sampleList: [], selectedSamples : []});
+
     let q = this.state.query;
 
     console.log("searching" + q);
@@ -199,6 +207,12 @@ class App extends Component {
   render() {
     return (
       <div className="column app">
+      <CartPanel 
+            show={this.state.showCart} 
+            onClose={this.cartClosed}
+            selectedSamples={this.state.selectedSamples}
+            sampleList={this.state.sampleList}
+            onCartChange={this.cartChanged}/>
         <RibbonMenu show={this.state.showMenu} onClose={this.menuClose} />
         <Ribbon>
           <TitleBar />
@@ -241,11 +255,7 @@ class App extends Component {
           </RibbonContent>
         </Ribbon>
         <Content>
-          <CartPanel 
-            show={this.state.showCart} 
-            onClose={this.cartClosed}
-            selectedSamples={this.state.selectedSamples}
-            sampleList={this.state.sampleList}/>
+          
           <SideBar>
             <SideTabs>
               <Groups name="Groups" onClick={this.clicked} />

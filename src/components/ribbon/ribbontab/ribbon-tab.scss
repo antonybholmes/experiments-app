@@ -3,8 +3,6 @@
 .ribbon-tab {
   border-radius: 0;
   height: $RIBBON-TAB-HEIGHT;
-  border-top-left-radius: $BORDER-RADIUS;
-  border-top-right-radius: $BORDER-RADIUS;
   transition: background-color 300ms ease-out, color 300ms ease-out;
 }
 

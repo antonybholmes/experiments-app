@@ -30,11 +30,22 @@
   margin-right: 0.5rem;
 }
 
-.primary-button {
+.semantic-button {
   color: white;
+}
+
+.primary-button {
   background-color: #5599ff;
 }
 
 .primary-button:hover {
   background-color: #2a7fff;
+}
+
+.danger-button {
+  background-color: #ff2a2a;
+}
+
+.danger-button:hover {
+  background-color: #ff0000;
 }
