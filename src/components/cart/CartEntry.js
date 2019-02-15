@@ -12,9 +12,7 @@ class CartEntry extends Component {
   }
 
   clicked(e) {
-    console.log('remove');
-    
-    this.props.onRemove(this.props.name);
+    this.props.onRemoveFromCart(this.props.name);
   }
 
 

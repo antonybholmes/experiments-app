@@ -6,7 +6,7 @@ import SemanticButton from "./SemanticButton";
 
 const PrimaryButton = (props) => {
   return (
-    <SemanticButton onClick={props.onClick} type="primary-button">{props.children}</SemanticButton>
+    <SemanticButton cmd={props.cmd} onClick={props.onClick} type="primary-button">{props.children}</SemanticButton>
   );
 };
 

@@ -47,10 +47,11 @@ class App extends Component {
       samples: {},
       sampleList: [],
       selectedSamples: [],
-      cartSamples: [],
+      cartSamples: new Map(),
+      page: 1,
       showMenu: false,
       sortby: "microarray-labeled-extract-array-platform",
-      showCart : false,
+      showCart: false,
       sortAsc: true
     };
 
@@ -62,31 +63,68 @@ class App extends Component {
     this.search = this.search.bind(this);
     this.sortChanged = this.sortChanged.bind(this);
     this.showCartClicked = this.showCartClicked.bind(this);
-    this.cartClosed = this.cartClosed.bind(this);
+    this.hideCart = this.hideCart.bind(this);
+    this.removeFromCart = this.removeFromCart.bind(this);
+    this.clearCart = this.clearCart.bind(this);
     this.selectionChanged = this.selectionChanged.bind(this);
-    this.cartChanged = this.cartChanged.bind(this);
+   
   }
 
-  clicked(e) {
-    console.log('file clicked');
+  clicked(e, cmd) {
+    console.log('button clicked ' + cmd);
+
+    switch (cmd) {
+      case "add-to-cart":
+        this.addToCart();
+        break;
+      default:
+        break;
+    }
+  }
+
+  /**
+   * Add samples to the cart
+   */
+  addToCart() {
+    let samples = new Map(this.state.cartSamples);
+    
+    this.state.selectedSamples.forEach((index, i) => {
+      console.log('add to cart ' + this.state.sampleList[index].n + ' ' + index);
+
+      samples.set(this.state.sampleList[index].n, this.state.sampleList[index].id);
+    });
+
+    this.setState({cartSamples : samples})
+  }
+
+  removeFromCart(name) {
+    let samples = new Map(this.state.cartSamples);
+    
+    samples.delete(name);
+
+    this.setState({cartSamples : samples})
+  }
+
+  clearCart() {
+    this.setState({cartSamples : new Map()})
   }
 
   selectionChanged(e, samples) {
-    this.setState({selectedSamples : samples});
+    this.setState({ selectedSamples: samples });
   }
 
   cartChanged(samples) {
-    this.setState({cartSamples : samples});
+    this.setState({ cartSamples: samples });
   }
 
   showCartClicked(e) {
     console.log('cart clicked ' + this.state.showCart);
 
-    this.setState({showCart : !this.state.showCart});
+    this.setState({ showCart: !this.state.showCart });
   }
 
-  cartClosed(e) {
-    this.setState({showCart : false});
+  hideCart(e) {
+    this.setState({ showCart: false });
   }
 
 
@@ -117,22 +155,22 @@ class App extends Component {
    * @param q   The search query.
    */
   searched(q) {
-    this.setState({ query: q });
-
-    this.search();
+    this.setState({ query: q }, () => {
+      this.search();
+    });
   }
 
   /**
    * Searches for samples matching the current query
    */
   search() {
-    this.setState({sampleList: [], selectedSamples : []});
+    this.setState({ sampleList: [], selectedSamples: [], cartStagedSamples: new Map(), cartSamples: [] });
 
     let q = this.state.query;
 
     console.log("searching" + q);
 
-    let url = `${URL}&q=${q}`;
+    let url = `${URL}&q=${q}&page=${this.state.page}`;
 
     if (this.state.sortby !== "sample") {
       url = `${url}&sortby=${this.state.sortby}`;
@@ -164,7 +202,7 @@ class App extends Component {
       sampleMap["Sample"].push(sample);
     });
 
-    this.setState({ sample: null, samples: sampleMap, sampleList : sampleMap["Sample"] });
+    this.setState({ sample: null, samples: sampleMap, sampleList: sampleMap["Sample"] });
   }
 
   sortBySamples(data) {
@@ -197,7 +235,7 @@ class App extends Component {
       });
     });
 
-    this.setState({ sample: null, samples: sampleMap, sampleList : samples });
+    this.setState({ sample: null, samples: sampleMap, sampleList: samples });
   }
 
   componentDidMount() {
@@ -207,12 +245,12 @@ class App extends Component {
   render() {
     return (
       <div className="column app">
-      <CartPanel 
-            show={this.state.showCart} 
-            onClose={this.cartClosed}
-            selectedSamples={this.state.selectedSamples}
-            sampleList={this.state.sampleList}
-            onCartChange={this.cartChanged}/>
+        <CartPanel
+          show={this.state.showCart}
+          samples={this.state.cartSamples}
+          onHide={this.hideCart}
+          onRemoveFromCart={this.removeFromCart}
+          onClearCart={this.clearCart} />
         <RibbonMenu show={this.state.showMenu} onClose={this.menuClose} />
         <Ribbon>
           <TitleBar />
@@ -242,7 +280,7 @@ class App extends Component {
               </RibbonToolbarSection>
 
               <RibbonToolbarSection name="Cart">
-                <RibbonButton onClick={this.clicked}>
+                <RibbonButton cmd="add-to-cart" onClick={this.clicked}>
                   <ButtonIcon name="fa-plus" />
                   Add To Cart
                 </RibbonButton>
@@ -255,7 +293,7 @@ class App extends Component {
           </RibbonContent>
         </Ribbon>
         <Content>
-          
+
           <SideBar>
             <SideTabs>
               <Groups name="Groups" onClick={this.clicked} />

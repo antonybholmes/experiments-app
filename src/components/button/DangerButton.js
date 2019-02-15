@@ -5,7 +5,7 @@ import SemanticButton from "./SemanticButton";
 
 const DangerButton = (props) => {
   return (
-    <SemanticButton type="danger-button" onClick={props.onClick}>{props.children}</SemanticButton>
+    <SemanticButton cmd={props.cmd} type="danger-button" onClick={props.onClick}>{props.children}</SemanticButton>
   );
 };
 
