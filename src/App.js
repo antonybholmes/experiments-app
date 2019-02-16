@@ -30,6 +30,7 @@ import CenterPanel from "./components/centerpanel/CenterPanel";
 import TitleBar from "./components/ribbon/titlebar/TitleBar";
 import CartPanel from "./components/cart/CartPanel";
 import CartButton from "./components/cart/CartButton";
+import OKCancelDialog from "./components/dialog/OKCancelDialog";
 
 const KEY = Constants.KEY;
 const URL = `http://52.206.83.98/edbw/api/v1/samples/search?&key=${KEY}&totp=031082`;
@@ -52,6 +53,9 @@ class App extends Component {
       showMenu: false,
       sortby: "microarray-labeled-extract-array-platform",
       showCart: false,
+      showDialog: false,
+      dialogMessage: "",
+      dialogCallBack: null,
       sortAsc: true
     };
 
@@ -66,8 +70,9 @@ class App extends Component {
     this.hideCart = this.hideCart.bind(this);
     this.removeFromCart = this.removeFromCart.bind(this);
     this.clearCart = this.clearCart.bind(this);
+    this._clearCart = this._clearCart.bind(this);
     this.selectionChanged = this.selectionChanged.bind(this);
-   
+    this.dialogStatus = this.dialogStatus.bind(this);
   }
 
   clicked(e, cmd) {
@@ -79,6 +84,20 @@ class App extends Component {
         break;
       default:
         break;
+    }
+  }
+
+  dialogStatus(status) {
+    this.setState({showDialog : false});
+
+    console.log('what now ' + status);
+
+    if (status === "ok") {
+      console.log('what now  2' + status);
+
+      if (this.state.dialogCallBack !== null) {
+        this.state.dialogCallBack();
+      }
     }
   }
 
@@ -106,6 +125,12 @@ class App extends Component {
   }
 
   clearCart() {
+    this.setState({dialogMessage : "Are you sure you want to clear the cart?", 
+      dialogCallBack : this._clearCart,
+      showDialog : true});
+  }
+
+  _clearCart() {
     this.setState({cartSamples : new Map()})
   }
 
@@ -245,13 +270,20 @@ class App extends Component {
   render() {
     return (
       <div className="column app">
+        <OKCancelDialog 
+        show={this.state.showDialog}
+        message={this.state.dialogMessage} 
+        onStatus={this.dialogStatus} />
+
         <CartPanel
           show={this.state.showCart}
           samples={this.state.cartSamples}
           onHide={this.hideCart}
           onRemoveFromCart={this.removeFromCart}
           onClearCart={this.clearCart} />
+
         <RibbonMenu show={this.state.showMenu} onClose={this.menuClose} />
+        
         <Ribbon>
           <TitleBar />
           <RibbonBar>

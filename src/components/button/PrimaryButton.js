@@ -1,7 +1,6 @@
 import React from "react";
 
 import "./button.scss";
-import Button from "./Button";
 import SemanticButton from "./SemanticButton";
 
 const PrimaryButton = (props) => {

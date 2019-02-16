@@ -7,7 +7,7 @@ const TITLE_BUTTON_CLASSES = "base-title-button ";
 
 const TitleButton = (props) => {
   return (
-      <Button type={TITLE_BUTTON_CLASSES + props.type}>{props.children}</Button>
+      <Button cmd={props.cmd} type={TITLE_BUTTON_CLASSES + props.type} onClick={props.onClick}>{props.children}</Button>
     );
 };
 

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 
 import "./ribbon-menu.scss";
+import RibbonMenuBar from "./RibbonMenuBar";
+import RibbonMenuPanel from "./RibbonMenuPanel";
 
 class RibbonMenu extends Component {
   constructor(props) {
@@ -14,7 +16,7 @@ class RibbonMenu extends Component {
   }
 
   render() {
-    let classNames = "row ribbon-menu";
+    let classNames = "ribbon-menu";
 
     if (this.props.show) {
       classNames += " ribbon-menu-show";
@@ -22,9 +24,12 @@ class RibbonMenu extends Component {
 
     return (
       <div className={classNames} onClick={this.clicked}>
-        <div className="column">dsdfdsf</div>
-        {this.props.children}
-        <div className="column base-card" style={{flex: 4}}>fff</div>
+        <div className="ribbon-menu-content column">
+          <div className="row">
+            <RibbonMenuBar>Test</RibbonMenuBar>
+            <RibbonMenuPanel>ddd</RibbonMenuPanel>
+          </div>
+        </div>
       </div>
     );
   }

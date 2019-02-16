@@ -1,12 +1,12 @@
 import React from "react";
 
-import Icon from "../Icon"
+import MaterialIcon from "../MaterialIcon"
 import QuickAccessButton from "../ribbon/quickaccess/QuickAccessButton"
 
 const CartButton = (props) => {
   return (
     <QuickAccessButton onClick={props.onClick}>
-      <Icon name="fa-shopping-cart" />
+      <MaterialIcon name="shopping_cart" />
     </QuickAccessButton>
   );
 }

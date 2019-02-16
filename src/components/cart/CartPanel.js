@@ -7,6 +7,7 @@ import CartEntry from "./CartEntry";
 
 import "./cart.scss";
 import Button from "../button/Button";
+import DialogButton from "../button/DialogButton";
 
 class CartPanel extends Component {
   constructor(props) {
@@ -54,9 +55,7 @@ class CartPanel extends Component {
           <HideButton cmd="hide" type="fa-angle-right" onClick={this.clicked}/>
         </div>
 
-        <div className="row no-flex">
-          <PrimaryButton cmd="clear" onClick={this.clicked}>Clear</PrimaryButton>
-        </div>
+
 
         <div className="column">
           <Scrollbars>
@@ -64,7 +63,9 @@ class CartPanel extends Component {
           </Scrollbars>
         </div>
 
-
+        <div className="row no-flex">
+          <DialogButton cmd="clear" onClick={this.clicked}>Clear</DialogButton>
+        </div>
 
       </div>
     );

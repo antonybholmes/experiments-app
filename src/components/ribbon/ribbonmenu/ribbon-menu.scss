@@ -1,22 +1,47 @@
+@import "../../../theme.scss";
+
 .ribbon-menu {
   position: fixed; /* Sit on top of the page content */
   display: none; /* Hidden by default */
-
+  overflow: hidden;
   top: 0; 
   left: 0;
-  right: 0;
-  bottom: 0;
+  width: 100%;
+  height: 100%;
   background-color: rgba(250,250,250,0.95); /* Black background with opacity */
-  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-  cursor: pointer; /* Add a pointer on hover */
-  transform: translateX(-100%);
-  animation: slide-in 300ms forwards;
+  z-index: 100; /* Specify a stack order in case you're using a different order for other elements */
+
+  
 }
 
-@keyframes slide-in {
-  100% { transform: translateX(0%); }
+.ribbon-menu-content {
+  position: fixed; /* Sit on top of the page content */
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes ribbon-menu-fade-in {
+  from { 
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .ribbon-menu-show {
   display: block;
+  animation: ribbon-menu-fade-in $TRANSITION-TIME forwards;
+}
+
+.ribbon-menu-bar {
+  color: rgba(255, 255, 255, 0.9);
+  background-color: $RIBBON-COLOR;
+}
+
+.ribbon-menu-panel {
+  flex: 5;
 }
