@@ -8,10 +8,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(250,250,250,0.95); /* Black background with opacity */
   z-index: 100; /* Specify a stack order in case you're using a different order for other elements */
-
-  
 }
 
 .ribbon-menu-content {
@@ -39,9 +36,27 @@
 
 .ribbon-menu-bar {
   color: rgba(255, 255, 255, 0.9);
-  background-color: $RIBBON-COLOR;
+  background-color: rgba($RIBBON-COLOR-R, $RIBBON-COLOR-G, $RIBBON-COLOR-B, 0.95);
+  min-width: 10rem;
 }
 
 .ribbon-menu-panel {
-  flex: 5;
+  flex: 6;
+}
+
+.ribbon-menu-item {
+  color: rgba(255, 255, 255, 0.8);
+  padding: 0.5rem;
+  padding-left: 1.5rem;
+}
+
+.ribbon-menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.ribbon-menu-sep {
+  border-top: solid 1px rgba(255, 255, 255, 0.5);
+  height: 1px;
+  margin-left: 1.5rem;
+  margin-right: 2rem;
 }

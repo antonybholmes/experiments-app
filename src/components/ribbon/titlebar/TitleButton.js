@@ -3,7 +3,7 @@ import React from "react";
 import "./titlebar.scss";
 import Button from "../../button/Button";
 
-const TITLE_BUTTON_CLASSES = "base-title-button ";
+const TITLE_BUTTON_CLASSES = "row-center base-title-button ";
 
 const TitleButton = (props) => {
   return (

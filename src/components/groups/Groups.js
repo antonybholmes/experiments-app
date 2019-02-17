@@ -3,6 +3,7 @@ import "./groups.scss";
 import axios from "axios";
 import Group from "./Group"
 import Constants from '../../Constants'
+import DialogButton from "../button/DialogButton";
 
 
 const KEY = Constants.KEY;
@@ -32,11 +33,14 @@ class Groups extends Component {
 
   render() {
     return (
-      <div>
+      <div className="column" style={{padding: "1rem"}}>
         <div className="groups">
           {this.state.groups.map(group => <Group key={group.id} onClick={this.clicked} group={group} />)}
-          
         </div>
+        <div className="row no-flex" style={{paddingTop: "1rem"}}>
+        <DialogButton>Apply</DialogButton>
+        </div>
+       
       </div>
     );
   }

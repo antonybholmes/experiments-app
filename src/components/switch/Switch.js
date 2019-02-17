@@ -13,6 +13,12 @@ class ToggleButton extends Component {
   }
 }
 
+const ToggleSlot = (props) => {
+  return (
+    <div className={["toggle-slot", (props.on) ? "switch-on" : "switch-off"].join(" ")}></div>)
+  ;
+}
+
 class Switch extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +31,7 @@ class Switch extends Component {
 
     console.log('on ' + on);
 
-    this.state = { on: on, classNames: ["switch", on ? "switch-on" : "switch-off"].join(" ") };
+    this.state = { on: on };
 
     this.toggle = this.toggle.bind(this);
     this.clicked = this.clicked.bind(this);
@@ -43,7 +49,8 @@ class Switch extends Component {
 
   render() {
     return (
-      <div className={this.state.classNames} onClick={this.clicked}>
+      <div className="row no-flex switch" onClick={this.clicked}>
+        <ToggleSlot on={this.state.on} />
         <ToggleButton on={this.state.on} />
       </div>);
   }

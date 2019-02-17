@@ -4,7 +4,7 @@ import MinButton from "./MinButton";
 import CloseButton from "./CloseButton";
 import MaxButton from "./MaxButton";
 
-const remote = window.require('electron').remote;
+const { remote } = window.require('electron');
 
 
 class ButtonBar extends Component {

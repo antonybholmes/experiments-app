@@ -78,7 +78,7 @@ class OKCancelDialog extends Component {
           </div>
           <div className="row row-center no-flex">
             <PrimaryButton cmd="ok" onClick={this.clicked}>OK</PrimaryButton>
-            <HSpace width="1rem" />
+            <HSpace size="1rem" />
             <DialogButton cmd="cancel" onClick={this.clicked}>Cancel</DialogButton>
           </div>
         </div>

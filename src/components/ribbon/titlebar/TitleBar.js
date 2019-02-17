@@ -2,7 +2,7 @@ import React from "react";
 import "./titlebar.scss";
 import ButtonBar from "./ButtonBar";
 
-const remote = window.require('electron').remote;
+const { remote } = window.require('electron');
 
 
 

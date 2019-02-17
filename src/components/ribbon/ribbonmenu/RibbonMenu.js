@@ -8,10 +8,10 @@ class RibbonMenu extends Component {
   constructor(props) {
     super(props);
 
-    this.clicked = this.clicked.bind(this);
+    this.closed = this.closed.bind(this);
   }
 
-  clicked(e) {
+  closed(e) {
     this.props.onClose(e);
   }
 
@@ -23,11 +23,13 @@ class RibbonMenu extends Component {
     }
 
     return (
-      <div className={classNames} onClick={this.clicked}>
+      <div className={classNames}>
         <div className="ribbon-menu-content column">
           <div className="row">
-            <RibbonMenuBar>Test</RibbonMenuBar>
-            <RibbonMenuPanel>ddd</RibbonMenuPanel>
+            <RibbonMenuBar onClose={this.closed}>
+              {this.props.children}
+            </RibbonMenuBar>
+            <RibbonMenuPanel></RibbonMenuPanel>
           </div>
         </div>
       </div>

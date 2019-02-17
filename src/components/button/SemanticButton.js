@@ -5,7 +5,7 @@ import Button from "./Button";
 
 const SemanticButton = (props) => {
   return (
-    <Button cmd={props.cmd} type={"semantic-button " + props.type} onClick={props.onClick}>{props.children}</Button>
+    <Button cmd={props.cmd} type={"row-center semantic-button " + props.type} onClick={props.onClick}>{props.children}</Button>
   );
 };
 

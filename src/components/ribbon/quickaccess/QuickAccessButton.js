@@ -5,7 +5,7 @@ import Button from "../../button/Button";
 
 const QuickAccessButton = (props) => {
   return (
-    <Button onClick={props.onClick} type="quick-access-button">{props.children}</Button>
+    <Button onClick={props.onClick} type="row-center quick-access-button">{props.children}</Button>
   );
 };
 

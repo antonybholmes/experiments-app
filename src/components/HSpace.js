@@ -1,7 +1,7 @@
 import React from "react";
 
 const HSpace = (props) => {
-  return (<div className="row no-flex" style={{width: props.width}}></div>);
+  return (<div className="column no-flex" style={{width: props.size}}></div>);
 }
 
 export default HSpace;

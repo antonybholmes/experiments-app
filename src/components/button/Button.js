@@ -1,6 +1,6 @@
 import React,  { Component } from "react";
 
-const BUTTON_CLASSES = "row no-flex row-center row-vert-center button "
+const BUTTON_CLASSES = "row no-flex row-vert-center button "
 
 class Button extends Component {
   constructor(props) {

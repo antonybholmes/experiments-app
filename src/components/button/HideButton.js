@@ -2,12 +2,12 @@ import React from "react";
 
 import "./button.scss";
 import Button from "./Button";
-import MaterialIcon from "../MaterialIcon";
+import MaterialIcon1x from "../MaterialIcon1x";
 
 const HideButton = (props) => {
   return (
     <Button cmd={props.cmd} onClick={props.onClick}>
-      <MaterialIcon name="arrow_forward_ios"/>
+      <MaterialIcon1x name="arrow_forward_ios"/>
     </Button>
   );
 };

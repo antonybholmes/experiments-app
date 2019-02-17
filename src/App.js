@@ -31,6 +31,12 @@ import TitleBar from "./components/ribbon/titlebar/TitleBar";
 import CartPanel from "./components/cart/CartPanel";
 import CartButton from "./components/cart/CartButton";
 import OKCancelDialog from "./components/dialog/OKCancelDialog";
+import RibbonMenuItem from "./components/ribbon/ribbonmenu/RibbonMenuItem";
+import RibbonMenuSep from "./components/ribbon/ribbonmenu/RibbonMenuSep";
+import VSpace from "./components/VSpace";
+
+const { remote } = window.require('electron');
+
 
 const KEY = Constants.KEY;
 const URL = `http://52.206.83.98/edbw/api/v1/samples/search?&key=${KEY}&totp=031082`;
@@ -81,6 +87,9 @@ class App extends Component {
     switch (cmd) {
       case "add-to-cart":
         this.addToCart();
+        break;
+      case "exit":
+        remote.getCurrentWindow().close();
         break;
       default:
         break;
@@ -282,7 +291,13 @@ class App extends Component {
           onRemoveFromCart={this.removeFromCart}
           onClearCart={this.clearCart} />
 
-        <RibbonMenu show={this.state.showMenu} onClose={this.menuClose} />
+        <RibbonMenu show={this.state.showMenu} onClose={this.menuClose}>
+          <RibbonMenuItem cmd="exit" onClick={this.clicked}>Close</RibbonMenuItem>
+          <VSpace size="1rem"/>
+          <RibbonMenuSep/>
+          <VSpace size="1rem"/>
+          <RibbonMenuItem cmd="about" onClick={this.clicked}>About</RibbonMenuItem>
+        </RibbonMenu>
         
         <Ribbon>
           <TitleBar />
