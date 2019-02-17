@@ -4,7 +4,7 @@
   height: 2rem;
   border-radius: $BORDER-RADIUS;
   color: black;
-  transition: background-color $TRANSITION-TIME ease-in-out;
+  transition: background-color $TRANSITION-TIME ease;
   text-align: center;
   cursor: pointer;
 }
@@ -18,7 +18,7 @@
 }
 
 .icon-button {
-  transition: color $TRANSITION-TIME ease-in-out;
+  transition: color $TRANSITION-TIME ease;
 }
 
 .hide-button:hover {
@@ -69,12 +69,12 @@
   height: 3rem;
   width: 3rem;
   border-radius: 3rem;
-  border: solid 2px rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.2);
-  transition: border-color $TRANSITION-TIME ease-in-out, color $TRANSITION-TIME ease-in-out;
+  border: solid 2px rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.5);
+  transition: border-color $TRANSITION-TIME ease, color $TRANSITION-TIME ease;
 }
 
 .back-button:hover {
-  color: rgba(255, 255, 255, 0.5);
-  border-color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.6);
 }

@@ -10,7 +10,7 @@
   height: 100%; /* Full height */
   overflow: hidden; /* Enable scroll if needed */
   
-  background-color: rgba(255, 255, 255, 0.95); /* Black w/ opacity */
+  background-color: $DIALOG-MEZZ-BACKGROUND; /* Black w/ opacity */
   animation-name: modal-fade-in; /* Fade in the background */
   animation-duration: $TRANSITION-TIME;
 }

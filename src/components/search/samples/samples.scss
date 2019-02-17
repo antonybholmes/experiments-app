@@ -11,7 +11,7 @@
   cursor: pointer;
   background-color: rgba(0,0,0,0);
   border-bottom: solid 1px #ddd;
-  transition: background-color $TRANSITION-TIME ease-in-out;
+  transition: background-color $TRANSITION-TIME ease;
 }
 
 .sample-selected {

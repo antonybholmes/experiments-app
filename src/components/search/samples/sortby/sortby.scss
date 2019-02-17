@@ -16,7 +16,7 @@
 
 .sortby-icon {
   margin-left: 0.5rem;
-  transition: color $TRANSITION-TIME ease-in-out;
+  transition: color $TRANSITION-TIME ease;
 }
 
 .sortby-icon:hover, .sortby-icon:focus {
@@ -39,7 +39,7 @@
   min-width: 14rem;
   box-shadow: $BOX-SHADOW-MENU;
   z-index: 100;
-  transition: opacity $TRANSITION-TIME ease-in-out;
+  transition: opacity $TRANSITION-TIME ease;
 }
 
 /* Links inside the dropdown */
