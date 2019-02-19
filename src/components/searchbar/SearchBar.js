@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import "./search-bar.scss";
+import MaterialIcon1x from "../MaterialIcon1x";
 
 
 class SearchBar extends Component {
@@ -25,12 +26,16 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div className="row no-flex row-center row-vert-center search-bar">
+      
         <form onSubmit={this.handleSubmit}>
-          <input type="text" className="search-box" value={this.state.query} onChange={this.handleChange} />
-          <button type="submit" className="search-button fas fa-search" />
+        <div className="row no-flex row-center row-vert-center search-bar">
+          <input type="text" className="column search-box" value={this.state.query} onChange={this.handleChange} />
+          <button type="submit" className="row no-flex search-button">
+            <MaterialIcon1x name="search"/>
+          </button>
+          </div>
         </form>
-      </div>
+      
     );
   }
 }

@@ -7,7 +7,7 @@ import Button from "../../button/Button";
 
 const FileTab = (props) => {
   return (
-    <Button type="file-tab" onClick={props.onClick}>File</Button>
+    <Button type="row no-flex file-tab" onClick={props.onClick}>File</Button>
   );
 }
 

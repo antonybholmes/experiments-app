@@ -330,7 +330,7 @@ class App extends Component {
           sampleInfoMap[tag] = e.v;
         });
 
-        this.setState({ sample : sample, sampleInfo: sampleInfoMap });
+        this.setState({ sample: sample, sampleInfo: sampleInfoMap });
       })
   }
 
@@ -359,12 +359,16 @@ class App extends Component {
 
         <AppRibbonBarBlock>
           <RibbonBar>
-            <FileTab onClick={this.fileClicked} />
+            <QuickAccessToolbar>
+              <FileTab onClick={this.fileClicked} />
 
-            <RibbonTabs onChangeTab={this.changeTab} />
+              <RibbonTabs onChangeTab={this.changeTab} />
+            </QuickAccessToolbar>
+
+            <SearchBar query={this.state.query} onSearch={this.searched} />
+
 
             <QuickAccessToolbar>
-              <SearchBar query={this.state.query} onSearch={this.searched} />
 
               <CartButton onClick={this.showCartClicked} />
             </QuickAccessToolbar>
