@@ -19,7 +19,7 @@ class SampleInfo extends Component {
   }
 
   renderItems() {
-    if (this.props.sample === undefined) {
+    if (this.props.sample === null) {
       return (<div>Please select a sample.</div>);
     }
 

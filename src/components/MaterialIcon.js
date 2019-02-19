@@ -1,9 +1,9 @@
 import React from "react";
 
-const ICON_CLASSES = "row no-flex row-center row-vert-center material-icons";
+import Icon from "./Icon"
 
 const MaterialIcon = (props) => {
-  return (<div className={ICON_CLASSES} style={{fontSize: props.size}}>{props.name}</div>);
+  return (<Icon type={"material-icons " + props.type} style={{fontSize: props.size}}>{props.name}</Icon>);
 }
 
 export default MaterialIcon;

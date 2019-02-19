@@ -1,0 +1,33 @@
+@import "../../theme.scss";
+
+.pages {
+  padding: 0.5rem;
+}
+
+.page {
+  height: 2rem;
+  width: 2rem;
+  color: $ALT-TEXT-COLOR;
+  cursor: pointer;
+}
+
+.page-selected {
+  color: $RIBBON-COLOR;
+}
+
+.page-highlight {
+  transition: color $TRANSITION-TIME ease;
+}
+
+.page-highlight:hover {
+  color: $RIBBON-COLOR;
+}
+
+.page-nav-button {
+  color: $ALT-TEXT-COLOR;
+  width: 2rem;
+}
+
+.page-nav-button:hover {
+  color: $RIBBON-COLOR;
+}

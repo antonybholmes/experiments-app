@@ -50,23 +50,21 @@ class CartPanel extends Component {
 
     return (
       <div key="cart-panel" className={classNames}>
-        <div className="row no-flex row-vert-center justify-space-between">
-          <h3>Samples</h3>
-          <HideButton cmd="hide" type="fa-angle-right" onClick={this.clicked}/>
+        <div className="column cart-panel">
+          <div className="row no-flex row-vert-center justify-space-between">
+            <h3>Samples</h3>
+            <HideButton cmd="hide" onClick={this.clicked} />
+          </div>
+          <div className="column">
+            <Scrollbars>
+              {this.renderItems()}
+            </Scrollbars>
+          </div>
+
+          <div className="row no-flex">
+            <DialogButton cmd="clear" onClick={this.clicked}>Clear</DialogButton>
+          </div>
         </div>
-
-
-
-        <div className="column">
-          <Scrollbars>
-            {this.renderItems()}
-          </Scrollbars>
-        </div>
-
-        <div className="row no-flex">
-          <DialogButton cmd="clear" onClick={this.clicked}>Clear</DialogButton>
-        </div>
-
       </div>
     );
   }

@@ -2,17 +2,21 @@
 
 .cart {
   position: absolute;
-  // display: none;
+
   //opacity: 0;
-  top: 80px; 
+  top: 0; 
   right: 0;
-  height: 85%;
+  height: 100%;
   width: 300px;
   background-color: white;
-  box-shadow: $BOX-SHADOW-MENU;
+  border-left: solid 1px $LINE-COLOR;
   z-index: 2;
-  padding: 1rem;
+
   transform: translateX(100%);
+}
+
+.cart-panel {
+  padding: 1rem;
 }
 
 @keyframes cart-slide-in {

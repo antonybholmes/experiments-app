@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import MenuItem from "../../../menuitem/MenuItem";
+import MenuItem from "../../../menu/MenuItem";
 
 import "./sortby.scss";
 import "../../../../app.scss";
 import ButtonText from "../../../button/ButtonText";
+import MenuIcon from "../../../menu/MenuIcon";
 
 const MENU_ITEMS = ["Sample", "Person", "Array Platform"]
 
 const SEARCH_TAGS = {
-  "Sample" : "sample",
+  "Sample" : "sample-name",
   "Person" : "sample-person",
   "Array Platform" : "microarray-labeled-extract-array-platform",
 };
@@ -47,13 +48,16 @@ class SortByMenu extends Component {
       let iconClassNames = "column no-flex row-center row-vert-center icon menu-item-icon";
 
       if (SEARCH_TAGS[item] === this.state.sortby) {
-        iconClassNames += " fas fa-check";
+        items.push(<MenuItem name={item} onClick={this.clicked}>
+          <MenuIcon name="check"/>
+          <ButtonText>{item}</ButtonText>
+        </MenuItem>);
+      } else {
+        items.push(<MenuItem name={item} onClick={this.clicked}>
+          <MenuIcon/>
+          <ButtonText>{item}</ButtonText>
+        </MenuItem>);
       }
-
-      items.push(<MenuItem name={item} onClick={this.clicked}>
-        <div className={iconClassNames} />
-        <ButtonText>{item}</ButtonText>
-      </MenuItem>);
     });
 
     return items;

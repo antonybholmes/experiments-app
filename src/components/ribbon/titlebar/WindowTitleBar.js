@@ -6,9 +6,9 @@ const { remote } = window.require('electron');
 
 
 
-const TitleBar = (props) => {
+const WindowTitleBar = (props) => {
   return (
-    <div className="row row-center row-vert-center titlebar">
+    <div className="row no-flex row-center row-vert-center titlebar window-titlebar">
       
       <div className="row row-center row-vert-center window-title">{remote.getCurrentWindow().getTitle()}</div>
       <ButtonBar/>
@@ -16,4 +16,4 @@ const TitleBar = (props) => {
   );
 }
 
-export default TitleBar;
+export default WindowTitleBar;

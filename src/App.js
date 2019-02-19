@@ -5,35 +5,40 @@ import "./components/button/button.scss";
 import Content from "./components/content/Content"
 import StatusBar from "./components/statusbar/StatusBar"
 import RibbonButton from "./components/ribbon/ribbonbutton/RibbonButton"
-import Icon from "./components/Icon"
 import ButtonIcon from "./components/ButtonIcon"
-import SearchPane from "./components/search/SearchPane"
 import Groups from "./components/groups/Groups"
-import Ribbon from "./components/ribbon/Ribbon"
 import RibbonBar from "./components/ribbon/RibbonBar"
 import QuickAccessToolbar from "./components/ribbon/quickaccess/QuickAccessToolbar";
-import QuickAccessButton from "./components/ribbon/quickaccess/QuickAccessButton";
 import SideBar from "./components/sidebar/Sidebar";
 import RibbonMenu from "./components/ribbon/ribbonmenu/RibbonMenu";
 import RibbonContent from "./components/ribbon/ribboncontent/RibbonContent";
 import RibbonTabs from "./components/ribbon/RibbonTabs";
-import RibbonTab from "./components/ribbon/ribbontab/RibbonTab";
 import RibbonToolbar from "./components/ribbon/ribbontoolbar/RibbonToolbar";
 import RibbonToolbarSection from "./components/ribbon/ribbontoolbar/RibbonToolbarSection";
 import SideTabs from "./components/sidetabs/SideTabs";
-import Card from "./components/card/Card";
 import SearchBar from "./components/searchbar/SearchBar";
 import FileTab from "./components/ribbon/filetab/FileTab";
 import Constants from "./Constants";
 import axios from "axios";
 import CenterPanel from "./components/centerpanel/CenterPanel";
-import TitleBar from "./components/ribbon/titlebar/TitleBar";
+import WindowTitleBar from "./components/ribbon/titlebar/WindowTitleBar";
 import CartPanel from "./components/cart/CartPanel";
 import CartButton from "./components/cart/CartButton";
 import OKCancelDialog from "./components/dialog/OKCancelDialog";
 import RibbonMenuItem from "./components/ribbon/ribbonmenu/RibbonMenuItem";
 import RibbonMenuSep from "./components/ribbon/ribbonmenu/RibbonMenuSep";
 import VSpace from "./components/VSpace";
+
+import AppMainBlock from "./components/content/AppMainBlock";
+import AppRibbonBarBlock from "./components/content/AppRibbonBarBlock";
+import AppRibbonBlock from "./components/content/AppRibbonBlock";
+import Row from "./components/Row";
+import FlexColumn from "./components/FlexColumn";
+import Pages from "./components/pages/Pages";
+
+import Samples from "./components/search/samples/Samples";
+import SampleInfo from "./components/search/samples/SampleInfo";
+import Tags from "./Tags"
 
 const { remote } = window.require('electron');
 
@@ -51,11 +56,14 @@ class App extends Component {
     this.state = {
       toolbar: "Home",
       query: "BCL6",
+      sample: null,
+      sampleInfo: {},
       samples: {},
       sampleList: [],
       selectedSamples: [],
       cartSamples: new Map(),
       page: 1,
+      pages: 1,
       showMenu: false,
       sortby: "microarray-labeled-extract-array-platform",
       showCart: false,
@@ -78,7 +86,9 @@ class App extends Component {
     this.clearCart = this.clearCart.bind(this);
     this._clearCart = this._clearCart.bind(this);
     this.selectionChanged = this.selectionChanged.bind(this);
+    this.pageChanged = this.pageChanged.bind(this);
     this.dialogStatus = this.dialogStatus.bind(this);
+    this.sampleInfo = this.sampleInfo.bind(this);
   }
 
   clicked(e, cmd) {
@@ -97,7 +107,7 @@ class App extends Component {
   }
 
   dialogStatus(status) {
-    this.setState({showDialog : false});
+    this.setState({ showDialog: false });
 
     console.log('what now ' + status);
 
@@ -115,36 +125,40 @@ class App extends Component {
    */
   addToCart() {
     let samples = new Map(this.state.cartSamples);
-    
+
     this.state.selectedSamples.forEach((index, i) => {
       console.log('add to cart ' + this.state.sampleList[index].n + ' ' + index);
 
       samples.set(this.state.sampleList[index].n, this.state.sampleList[index].id);
     });
 
-    this.setState({cartSamples : samples})
+    this.setState({ cartSamples: samples })
   }
 
   removeFromCart(name) {
     let samples = new Map(this.state.cartSamples);
-    
+
     samples.delete(name);
 
-    this.setState({cartSamples : samples})
+    this.setState({ cartSamples: samples })
   }
 
   clearCart() {
-    this.setState({dialogMessage : "Are you sure you want to clear the cart?", 
-      dialogCallBack : this._clearCart,
-      showDialog : true});
+    this.setState({
+      dialogMessage: "Are you sure you want to clear the cart?",
+      dialogCallBack: this._clearCart,
+      showDialog: true
+    });
   }
 
   _clearCart() {
-    this.setState({cartSamples : new Map()})
+    this.setState({ cartSamples: new Map() })
   }
 
   selectionChanged(e, samples) {
-    this.setState({ selectedSamples: samples });
+    this.setState({ selectedSamples: samples }, () => {
+      this.sampleInfo();
+    });
   }
 
   cartChanged(samples) {
@@ -183,6 +197,13 @@ class App extends Component {
     });
   }
 
+  pageChanged(page) {
+
+    this.setState({ page: page }, () => {
+      this.search();
+    });
+  }
+
   /**
    * Handler for triggering a search when the query changes.
    * 
@@ -202,13 +223,11 @@ class App extends Component {
 
     let q = this.state.query;
 
-    console.log("searching" + q);
-
     let url = `${URL}&q=${q}&page=${this.state.page}`;
 
-    if (this.state.sortby !== "sample") {
-      url = `${url}&sortby=${this.state.sortby}`;
-    }
+    //if (this.state.sortby !== "sample") {
+    url = `${url}&sortby=${this.state.sortby}`;
+    //}
 
     console.log('blob ' + url);
 
@@ -216,24 +235,35 @@ class App extends Component {
       .then(res => {
         let data = res.data;
 
-        if ("data" in data) {
-          data = data.data;
-          this.sortBySamples(data);
-        } else {
+        this.setState({ page: data.page, pages: data.pages })
+
+        data = data.data;
+
+        if (this.state.sortby === "sample-name") {
           // Sort samples
           this.sortSamples(data);
+        } else {
 
+          this.sortBySamples(data);
         }
       })
   }
 
-  sortSamples(samples) {
+  /**
+   * Sort samples. Instead of grouping by name, we just sort by name
+   * and group under one category 'Sample' to stop duplicates.
+   * 
+   * @param {*} data 
+   */
+  sortSamples(data) {
     var sampleMap = {};
 
     sampleMap["Sample"] = [];
 
-    samples.forEach((sample, gi) => {
-      sampleMap["Sample"].push(sample);
+    Object.keys(data).sort().forEach((name, gi) => {
+      data[name].forEach((sample, gi) => {
+        sampleMap["Sample"].push(sample);
+      });
     });
 
     this.setState({ sample: null, samples: sampleMap, sampleList: sampleMap["Sample"] });
@@ -272,6 +302,38 @@ class App extends Component {
     this.setState({ sample: null, samples: sampleMap, sampleList: samples });
   }
 
+  sampleInfo() {
+    console.log('s info' + this.state.selectedSamples.length);
+
+    if (this.state.selectedSamples.length < 1) {
+      return;
+    }
+
+    let sample = this.state.sampleList[this.state.selectedSamples[0]];
+
+    let url = `${TAG_URL}${sample.id}`;
+
+    console.log(url);
+
+    axios.get(url, { headers: { "Access-Control-Allow-Origin": "*" } })
+      .then(res => {
+        const sampleInfo = res.data;
+        const sampleInfoMap = {}
+
+        sampleInfo.forEach(function (e) {
+          let tag = "n/a";
+
+          if (e.id in Tags) {
+            tag = Tags[e.id];
+          }
+
+          sampleInfoMap[tag] = e.v;
+        });
+
+        this.setState({ sample : sample, sampleInfo: sampleInfoMap });
+      })
+  }
+
   componentDidMount() {
     this.search(this.state.query);
   }
@@ -279,33 +341,25 @@ class App extends Component {
   render() {
     return (
       <div className="column app">
-        <OKCancelDialog 
-        show={this.state.showDialog}
-        message={this.state.dialogMessage} 
-        onStatus={this.dialogStatus} />
+        <OKCancelDialog
+          show={this.state.showDialog}
+          message={this.state.dialogMessage}
+          onStatus={this.dialogStatus} />
 
-        <CartPanel
-          show={this.state.showCart}
-          samples={this.state.cartSamples}
-          onHide={this.hideCart}
-          onRemoveFromCart={this.removeFromCart}
-          onClearCart={this.clearCart} />
 
         <RibbonMenu show={this.state.showMenu} onClose={this.menuClose}>
           <RibbonMenuItem cmd="exit" onClick={this.clicked}>Close</RibbonMenuItem>
-          <VSpace size="1rem"/>
-          <RibbonMenuSep/>
-          <VSpace size="1rem"/>
+          <VSpace size="1rem" />
+          <RibbonMenuSep />
+          <VSpace size="1rem" />
           <RibbonMenuItem cmd="about" onClick={this.clicked}>About</RibbonMenuItem>
         </RibbonMenu>
-        
-        <Ribbon>
-          <TitleBar />
+
+        <WindowTitleBar />
+
+        <AppRibbonBarBlock>
           <RibbonBar>
-
             <FileTab onClick={this.fileClicked} />
-
-
 
             <RibbonTabs onChangeTab={this.changeTab} />
 
@@ -314,52 +368,80 @@ class App extends Component {
 
               <CartButton onClick={this.showCartClicked} />
             </QuickAccessToolbar>
-
           </RibbonBar>
-          <RibbonContent tab={this.state.toolbar}>
-            <RibbonToolbar key="home" name="Home">
-              <RibbonToolbarSection name="Microarray">
-                <RibbonButton name="MAS5" onClick={this.clicked}>MAS5</RibbonButton>
-              </RibbonToolbarSection>
 
-              <RibbonToolbarSection name="RNA-seq">
-                <RibbonButton name="RNA-seq" onClick={this.clicked}>RNA-seq</RibbonButton>
-              </RibbonToolbarSection>
+          <AppRibbonBlock>
+            <CartPanel
+              show={this.state.showCart}
+              samples={this.state.cartSamples}
+              onHide={this.hideCart}
+              onRemoveFromCart={this.removeFromCart}
+              onClearCart={this.clearCart} />
 
-              <RibbonToolbarSection name="Cart">
-                <RibbonButton cmd="add-to-cart" onClick={this.clicked}>
-                  <ButtonIcon name="fa-plus" />
-                  Add To Cart
+            <RibbonContent tab={this.state.toolbar}>
+              <RibbonToolbar key="home" name="Home">
+                <RibbonToolbarSection name="Microarray">
+                  <RibbonButton name="MAS5" onClick={this.clicked}>MAS5</RibbonButton>
+                </RibbonToolbarSection>
+
+                <RibbonToolbarSection name="RNA-seq">
+                  <RibbonButton name="RNA-seq" onClick={this.clicked}>RNA-seq</RibbonButton>
+                </RibbonToolbarSection>
+
+                <RibbonToolbarSection name="Cart">
+                  <RibbonButton cmd="add-to-cart" onClick={this.clicked}>
+                    <ButtonIcon name="add" />
+                    Add To Cart
                 </RibbonButton>
-              </RibbonToolbarSection>
+                </RibbonToolbarSection>
 
-            </RibbonToolbar>
-            <RibbonToolbar key="other" name="Other">
-              <div>Other</div>
-            </RibbonToolbar>
-          </RibbonContent>
-        </Ribbon>
-        <Content>
+              </RibbonToolbar>
+              <RibbonToolbar key="other" name="Other">
+                <div>Other</div>
+              </RibbonToolbar>
+            </RibbonContent>
 
-          <SideBar>
-            <SideTabs>
-              <Groups name="Groups" onClick={this.clicked} />
-            </SideTabs>
+            <AppMainBlock>
+              <Content>
+                <SideBar>
+                  <SideTabs>
+                    <Groups name="Groups" onClick={this.clicked} />
+                  </SideTabs>
 
-          </SideBar>
-          <CenterPanel>
-            {/* <Card> */}
-            <SearchPane
-              sortby={this.state.sortby}
-              sample={this.state.sample}
-              samples={this.state.samples}
-              onSortChanged={this.sortChanged}
-              onSelectionChanged={this.selectionChanged}
-            />
-            {/* </Card> */}
-          </CenterPanel>
-        </Content>
-        <StatusBar />
+                </SideBar>
+
+                <CenterPanel>
+                  <Row>
+                    <Samples sortby={this.state.sortby}
+                      samples={this.state.samples}
+                      onClick={this.clicked}
+                      onSortChanged={this.sortChanged}
+                      onSelectionChanged={this.selectionChanged} />
+
+                    <FlexColumn flex="4">
+
+                      <SampleInfo key="sample-info" sample={this.state.sample} sampleInfo={this.state.sampleInfo} />
+
+                      {/* <Column>
+                    <SearchPane
+                      sortby={this.state.sortby}
+                      sample={this.state.sample}
+                      samples={this.state.samples}
+                      onSortChanged={this.sortChanged}
+                      onSelectionChanged={this.selectionChanged}
+                    /> */}
+
+
+                      <Pages page={this.state.page} pages={this.state.pages} onPageChange={this.pageChanged} />
+                    </FlexColumn>
+                  </Row>
+                </CenterPanel>
+
+              </Content>
+              <StatusBar />
+            </AppMainBlock>
+          </AppRibbonBlock>
+        </AppRibbonBarBlock>
       </div>
     );
   }

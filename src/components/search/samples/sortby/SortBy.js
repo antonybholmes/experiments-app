@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import MenuItem from "../../../menuitem/MenuItem";
+import MenuItem from "../../../menu/MenuItem";
 
 import "./sortby.scss";
 import "../../../../app.scss";

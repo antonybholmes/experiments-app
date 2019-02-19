@@ -5,7 +5,7 @@ import "./ribbon.scss";
 
 const RibbonBar = (props) => {
   return (
-    <div className="row ribbon-bar">
+    <div className="row no-flex ribbon-bar">
       {props.children}
     </div>
   );
