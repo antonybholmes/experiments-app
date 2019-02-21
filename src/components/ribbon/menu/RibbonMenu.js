@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "./ribbon-menu.scss";
 import RibbonMenuBar from "./RibbonMenuBar";
 import RibbonMenuPanel from "./RibbonMenuPanel";
+import RibbonMenuTitleBar from "./RibbonMenuTitleBar";
 
 class RibbonMenu extends Component {
   constructor(props) {
@@ -24,7 +25,8 @@ class RibbonMenu extends Component {
 
     return (
       <div className={classNames}>
-        <div className="ribbon-menu-content column">
+        <RibbonMenuTitleBar/>
+        <div className="column ribbon-menu-content ">
           <div className="row">
             <RibbonMenuBar onClose={this.closed}>
               {this.props.children}

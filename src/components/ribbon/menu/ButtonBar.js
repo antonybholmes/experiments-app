@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import "./titlebar.scss";
-import MinButton from "./MinButton";
-import CloseButton from "./CloseButton";
-import MaxButton from "./MaxButton";
+import "./ribbon-menu.scss";
+import CloseButton from "../titlebar/CloseButton";
+import MinButton from "../titlebar/MinButton";
+import MaxButton from "../titlebar/MaxButton";
 
 const { remote } = window.require('electron');
 
@@ -37,10 +37,10 @@ class ButtonBar extends Component {
 
   render() {
     return (
-      <div className="row no-flex row-vert-center button-bar">
-        <MinButton type="light-base-title-button light-title-button" onClick={this.minClicked} />
-        <MaxButton type="light-base-title-button light-title-button" onClick={this.maxClicked} />
-        <CloseButton type="light-base-title-button" onClick={this.closeClicked} />
+      <div className="row no-flex row-vert-center ribbon-menu-button-bar">
+        <MinButton type="dark-title-button" onClick={this.minClicked} />
+        <MaxButton type="dark-title-button" onClick={this.maxClicked} />
+        <CloseButton type="dark-title-button" onClick={this.closeClicked} />
       </div>
     );
   }

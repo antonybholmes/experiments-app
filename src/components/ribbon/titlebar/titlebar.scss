@@ -1,9 +1,7 @@
 @import "../../../theme.scss";
 
-$TITLE-BUTTON-TRANS: 0.2;
 
 .titlebar {
-  -webkit-app-region: drag;
   position: relative;
 }
 
@@ -12,6 +10,7 @@ $TITLE-BUTTON-TRANS: 0.2;
 }
 
 .window-title {
+  -webkit-app-region: drag;
   position: absolute;
   top: 0;
   left: 0;
@@ -22,6 +21,7 @@ $TITLE-BUTTON-TRANS: 0.2;
 }
 
 .button-bar {
+  -webkit-app-region: no-drag;
   z-index: 10;
 }
 
@@ -31,18 +31,18 @@ $TITLE-BUTTON-TRANS: 0.2;
 }
 
 .base-title-button {
-  color: white;
   height: 1.8rem;
   width: 3rem;
   border-radius: 0;
   background-color: $TRANS-COLOR;
 }
 
-
-.title-button:hover {
-  background-color: rgba(255, 255, 255, $TITLE-BUTTON-TRANS);
+.light-base-title-button {
+  color: white;
 }
 
-.title-icon {
-  color: white;
+
+
+.light-title-button:hover {
+  background-color: rgba(255, 255, 255, $TITLE-BUTTON-TRANS);
 }

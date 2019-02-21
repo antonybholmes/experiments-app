@@ -6,6 +6,8 @@ import NextButton from "./NextButton";
 import PrevButton from "./PrevButton";
 import { ETIME } from "constants";
 
+const SHOW_PAGES = 5;
+const PAGE_RANGE = 9;
 
 class Pages extends Component {
   constructor(props) {
@@ -45,10 +47,13 @@ class Pages extends Component {
 
     console.log('pages ' + page + " " + pages);
 
-    ret.push(<PrevButton onClick={this.prev} />)
+    ret.push(<PrevButton onClick={this.prev} />);
 
-    for (let i = 1; i <= pages; ++i) {
-      ret.push(<Page page={i} selected={i === this.props.page} onClick={this.pageClicked} />);
+    let s = Math.max(1, page - SHOW_PAGES);
+    let e = Math.min(pages, s + PAGE_RANGE);
+
+    for (let i = s; i <= e; ++i) {
+      ret.push(<Page page={i} selected={i === page} onClick={this.pageClicked} />);
     }
 
     ret.push(<NextButton onClick={this.next} />)

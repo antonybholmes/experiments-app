@@ -5,7 +5,7 @@ import MaterialIcon1x from "../../MaterialIcon1x";
 
 const MaxButton = (props) => {
   return (
-    <TitleButton cmd="maximize" type="title-button" onClick={props.onClick} >
+    <TitleButton cmd="maximize" type={"title-button " + props.type} onClick={props.onClick} >
       <MaterialIcon1x name="maximize"/>
     </TitleButton>
     );

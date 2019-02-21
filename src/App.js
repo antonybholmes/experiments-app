@@ -10,7 +10,7 @@ import Groups from "./components/groups/Groups"
 import RibbonBar from "./components/ribbon/RibbonBar"
 import QuickAccessToolbar from "./components/ribbon/quickaccess/QuickAccessToolbar";
 import SideBar from "./components/sidebar/Sidebar";
-import RibbonMenu from "./components/ribbon/ribbonmenu/RibbonMenu";
+import RibbonMenu from "./components/ribbon/menu/RibbonMenu";
 import RibbonContent from "./components/ribbon/ribboncontent/RibbonContent";
 import RibbonTabs from "./components/ribbon/RibbonTabs";
 import RibbonToolbar from "./components/ribbon/ribbontoolbar/RibbonToolbar";
@@ -25,8 +25,8 @@ import WindowTitleBar from "./components/ribbon/titlebar/WindowTitleBar";
 import CartPanel from "./components/cart/CartPanel";
 import CartButton from "./components/cart/CartButton";
 import OKCancelDialog from "./components/dialog/OKCancelDialog";
-import RibbonMenuItem from "./components/ribbon/ribbonmenu/RibbonMenuItem";
-import RibbonMenuSep from "./components/ribbon/ribbonmenu/RibbonMenuSep";
+import RibbonMenuItem from "./components/ribbon/menu/RibbonMenuItem";
+import RibbonMenuSep from "./components/ribbon/menu/RibbonMenuSep";
 import VSpace from "./components/VSpace";
 
 import AppMainBlock from "./components/content/AppMainBlock";

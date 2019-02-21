@@ -1,7 +1,7 @@
 @import "../../../theme.scss";
 
 .ribbon-menu {
-  position: fixed; /* Sit on top of the page content */
+  position: absolute; /* Sit on top of the page content */
   display: none; /* Hidden by default */
   overflow: hidden;
   top: 0; 
@@ -13,7 +13,7 @@
 }
 
 .ribbon-menu-content {
-  position: fixed; /* Sit on top of the page content */
+  position: absolute; /* Sit on top of the page content */
   // top: 2%; 
   // left: 2%;
   // width: 96%;
@@ -68,4 +68,37 @@
   height: 1px;
   margin-left: 1.5rem;
   margin-right: 2rem;
+}
+
+
+.ribbon-menu-title-bar {
+  position: absolute;
+  width: 100%;
+  height: 32px;
+  top: 0;
+  left: 0;
+  z-index: 200;
+}
+
+.ribbon-menu-titlebar-title {
+  -webkit-app-region: drag;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 32px;
+  z-index: 200;
+}
+
+.ribbon-menu-button-bar {
+  -webkit-app-region: no-drag;
+  z-index: 300;
+}
+
+.dark-title-button {
+  color: $TEXT-COLOR;
+}
+
+.dark-title-button:hover {
+  background-color: rgba(127, 127, 127, $TITLE-BUTTON-TRANS);
 }

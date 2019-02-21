@@ -15,7 +15,7 @@ function createWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow({
         title: "Experiments",
-        // frame: false,
+        frame: false,
         width: 800,
         height: 600,
         webPreferences: { nodeIntegration: true, webSecurity: false }
